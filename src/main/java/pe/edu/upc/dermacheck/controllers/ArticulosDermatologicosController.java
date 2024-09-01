@@ -17,7 +17,7 @@ public class ArticulosDermatologicosController {
     @Autowired
     private IArticulosDermatologicosService articulosDermatologicosService;
 
-    // Comentario
+    // Comentario 123
     @GetMapping
 
     public List<ArticulosDermatologicos> listar() {
