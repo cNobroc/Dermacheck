@@ -2,8 +2,8 @@ package pe.edu.upc.dermacheck.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "Rol")
@@ -51,5 +51,4 @@ public class Rol {
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
-
 }

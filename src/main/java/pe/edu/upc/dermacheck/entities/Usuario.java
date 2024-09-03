@@ -1,14 +1,12 @@
 package pe.edu.upc.dermacheck.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Usuario")
 public class Usuario {
 
-    @Column(name = "esPremium")
-    private boolean esPremium;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
@@ -37,15 +35,16 @@ public class Usuario {
     @Column(name = "nombreEmpresa", length = 20)
     private String nombreEmpresa;
 
+    @Column(name = "esPremium")
+    private boolean esPremium;
+
+    @JsonIgnore
     @ManyToOne
-    @JsonManagedReference
     @JoinColumn(name = "idRol", nullable = false)
     private Rol rol;
 
     public Usuario() {
-    }
-    public boolean isPremium() {
-        return esPremium;
+        this.esPremium = false;
     }
 
     public Usuario(int idUsuario, String nombres, String apellidos, String nombreUsuario, String contrasenha, String correo, String sitioWeb, int telefono, String nombreEmpresa, Rol rol) {
@@ -58,15 +57,10 @@ public class Usuario {
         this.sitioWeb = sitioWeb;
         this.telefono = telefono;
         this.nombreEmpresa = nombreEmpresa;
-        this.esPremium=false;
+        this.esPremium = false;
         this.rol = rol;
     }
-    public  boolean getEsPremium() {
-        return esPremium;
-    }
-    public void setEsPremium(boolean esPremium) {
-        this.esPremium = esPremium;
-    }
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -137,6 +131,14 @@ public class Usuario {
 
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public boolean isEsPremium() {
+        return esPremium;
+    }
+
+    public void setEsPremium(boolean esPremium) {
+        this.esPremium = esPremium;
     }
 
     public Rol getRol() {

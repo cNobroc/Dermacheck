@@ -26,18 +26,20 @@ public class UsuarioDTO {
 
     private Rol rol;
 
-    public boolean getEsPremium() {
-        return esPremium;
-    }
-    public void setEsPremium(boolean esPremium) {
-        this.esPremium = esPremium;
-    }
     public int getIdUsuario() {
         return idUsuario;
     }
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public boolean isEsPremium() {
+        return esPremium;
+    }
+
+    public void setEsPremium(boolean esPremium) {
+        this.esPremium = esPremium;
     }
 
     public String getNombres() {

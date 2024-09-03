@@ -1,5 +1,6 @@
 package pe.edu.upc.dermacheck.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.sql.Date;
 

@@ -1,33 +1,11 @@
-package pe.edu.upc.dermacheck.entities;
+package pe.edu.upc.dermacheck.dtos;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "Anuncio")
-public class Anuncio {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AnuncioDTO {
     private int idAnuncio;
-
-    @Column(name = "url", nullable = false, length = 50)
     private String url;
-
-    @Column(name = "descripcion", nullable = false, length = 50)
     private String descripcion;
-
-    @Column(name = "idUsuario", nullable = false)
     private int idUsuario;
 
-
-    public Anuncio() {
-    }
-
-    public Anuncio(int idAnuncio, String url, String descripcion, int idUsuario) {
-        this.idAnuncio = idAnuncio;
-        this.url = url;
-        this.descripcion = descripcion;
-        this.idUsuario = idUsuario;
-    }
 
     public int getIdAnuncio() {
         return idAnuncio;
