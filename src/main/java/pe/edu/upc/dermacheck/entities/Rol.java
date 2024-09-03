@@ -1,6 +1,7 @@
 package pe.edu.upc.dermacheck.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,7 +15,8 @@ public class Rol {
 
     @Column(name = "nombreRol", nullable = false, length = 20)
     private String nombreRol;
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "rol")
     @JsonBackReference
     private List<Usuario> usuarios;
