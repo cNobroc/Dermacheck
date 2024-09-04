@@ -2,10 +2,9 @@ package pe.edu.upc.dermacheck.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.CentroMedicosDTO;
+import pe.edu.upc.dermacheck.entities.CentrosMedicos;
 import pe.edu.upc.dermacheck.serviceinterfaces.ICentroMedicosService;
 
 import java.util.List;
@@ -24,6 +23,23 @@ public class CentroMedicosController {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(x, CentroMedicosDTO.class);
         }).collect(Collectors.toList());
+    }
+    @PostMapping
+    public void registrar(@RequestBody CentroMedicosDTO dto){
+        ModelMapper m=new ModelMapper();
+        CentrosMedicos cm = m.map(dto,CentrosMedicos.class);
+        cS.insert(cm);
+    }
+    @PatchMapping
+    public void modificar(@RequestBody  CentroMedicosDTO dto){
+        ModelMapper m=new ModelMapper();
+        CentrosMedicos cm=m.map(dto,CentrosMedicos.class);
+        cS.update(cm);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+
+        cS.delete(id);
     }
 
 }
