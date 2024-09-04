@@ -1,5 +1,6 @@
 package pe.edu.upc.dermacheck.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.sql.Time;
 import java.util.Date;
@@ -20,13 +21,12 @@ public class Diagnostico {
     @Column(name = "imagenDiagnostico", nullable = false)
     private byte[] imagenDiagnostico;
 
-    @Column(name = "historial", nullable = false)
-    private byte[] historial;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idEnfermedad", nullable = false)
     private Enfermedad enfermedad;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
@@ -34,12 +34,11 @@ public class Diagnostico {
     public Diagnostico() {
     }
 
-    public Diagnostico(int idDiagnostico, Date fechaDiagnostico, Time horaDiagnostico, byte[] imagenDiagnostico, byte[] historial, Enfermedad enfermedad, Usuario usuario) {
+    public Diagnostico(int idDiagnostico, Date fechaDiagnostico, Time horaDiagnostico, byte[] imagenDiagnostico, Enfermedad enfermedad, Usuario usuario) {
         this.idDiagnostico = idDiagnostico;
         this.fechaDiagnostico = fechaDiagnostico;
         this.horaDiagnostico = horaDiagnostico;
         this.imagenDiagnostico = imagenDiagnostico;
-        this.historial = historial;
         this.enfermedad = enfermedad;
         this.usuario = usuario;
     }
@@ -74,14 +73,6 @@ public class Diagnostico {
 
     public void setImagenDiagnostico(byte[] imagenDiagnostico) {
         this.imagenDiagnostico = imagenDiagnostico;
-    }
-
-    public byte[] getHistorial() {
-        return historial;
-    }
-
-    public void setHistorial(byte[] historial) {
-        this.historial = historial;
     }
 
     public Enfermedad getEnfermedad() {

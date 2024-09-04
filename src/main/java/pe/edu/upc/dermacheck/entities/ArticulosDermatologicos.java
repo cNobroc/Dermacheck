@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "ArticulosDermatologicos")
 public class ArticulosDermatologicos {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idArticulosDermatologico;

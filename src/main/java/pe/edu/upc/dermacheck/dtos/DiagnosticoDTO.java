@@ -1,16 +1,26 @@
 package pe.edu.upc.dermacheck.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import pe.edu.upc.dermacheck.entities.Enfermedad;
+import pe.edu.upc.dermacheck.entities.Usuario;
+
 import java.sql.Time;
 import java.util.Date;
 
 public class DiagnosticoDTO {
     private int idDiagnostico;
+
     private Date fechaDiagnostico;
+
     private Time horaDiagnostico;
+
     private byte[] imagenDiagnostico;
-    private byte[] historial;
-    private int idEnfermedad;
-    private int idUsuario;
+
+    private Enfermedad enfermedad;
+
+    private Usuario usuario;
 
     public int getIdDiagnostico() {
         return idDiagnostico;
@@ -44,27 +54,19 @@ public class DiagnosticoDTO {
         this.imagenDiagnostico = imagenDiagnostico;
     }
 
-    public byte[] getHistorial() {
-        return historial;
+    public Enfermedad getEnfermedad() {
+        return enfermedad;
     }
 
-    public void setHistorial(byte[] historial) {
-        this.historial = historial;
+    public void setEnfermedad(Enfermedad enfermedad) {
+        this.enfermedad = enfermedad;
     }
 
-    public int getIdEnfermedad() {
-        return idEnfermedad;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdEnfermedad(int idEnfermedad) {
-        this.idEnfermedad = idEnfermedad;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
