@@ -3,11 +3,20 @@ package pe.edu.upc.dermacheck.dtos;
 import pe.edu.upc.dermacheck.entities.Usuario;
 
 public class ArticulosDermatologicosDTO {
+    private int idArticulosDermatologico;
     private String nombreRevista;
     private String tipoRevista;
     private String descripcion;
     private String url;
     private Usuario usuario;
+
+    public int getIdArticulosDermatologico() {
+        return idArticulosDermatologico;
+    }
+
+    public void setIdArticulosDermatologico(int idArticulosDermatologico) {
+        this.idArticulosDermatologico = idArticulosDermatologico;
+    }
 
     public String getNombreRevista() {
         return nombreRevista;

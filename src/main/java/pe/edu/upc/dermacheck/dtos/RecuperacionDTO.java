@@ -1,43 +1,31 @@
-package pe.edu.upc.dermacheck.entities;
+package pe.edu.upc.dermacheck.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import pe.edu.upc.dermacheck.entities.Usuario;
+
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "Recuperacion")
-public class Recuperacion {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RecuperacionDTO {
+
     private int idRecuperacion;
 
-    @Column(name = "fechaSolicitud", nullable = false)
     private LocalDate fechaSolicitud;
 
-    @Column(name = "codigoRecuperacion", nullable = false, length = 6)
     private int codigoRecuperacion;
 
-    @Column(name = "estadoRecuperacion",nullable = false)
     private boolean estadoRecuperacion;
 
-    @Column(name = "fechaExpiracion", nullable = false)
     private LocalDate fechaExpiracion;
-
-
-    @ManyToOne
-    @JoinColumn(name = "idUsuario" ,nullable = false)
     private Usuario usuario;
 
-    public Recuperacion() {
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public Recuperacion(int idRecuperacion, LocalDate fechaSolicitud, int codigoRecuperacion, boolean estadoRecuperacion, LocalDate fechaExpiracion, Usuario usuario) {
-        this.idRecuperacion = idRecuperacion;
-        this.fechaSolicitud = fechaSolicitud;
-        this.codigoRecuperacion = codigoRecuperacion;
-        this.estadoRecuperacion = estadoRecuperacion;
-        this.fechaExpiracion = fechaExpiracion;
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
@@ -79,13 +67,5 @@ public class Recuperacion {
 
     public void setFechaExpiracion(LocalDate fechaExpiracion) {
         this.fechaExpiracion = fechaExpiracion;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 }

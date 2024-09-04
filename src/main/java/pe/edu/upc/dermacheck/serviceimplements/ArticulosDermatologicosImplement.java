@@ -11,10 +11,25 @@ import java.util.List;
 @Service
 public class ArticulosDermatologicosImplement implements IArticulosDermatologicosService {
     @Autowired
-    private IArticulosDermatologicosRepository articulosDermatologicosRepository;
+    private IArticulosDermatologicosRepository aS;
 
     @Override
     public List<ArticulosDermatologicos> list() {
-        return articulosDermatologicosRepository.findAll();
+        return aS.findAll();
+    }
+
+    @Override
+    public void insert(ArticulosDermatologicos articulosDermatologicos) {
+        aS.save(articulosDermatologicos);
+    }
+
+    @Override
+    public void update(ArticulosDermatologicos articulosDermatologicos) {
+    aS.save(articulosDermatologicos);
+    }
+
+    @Override
+    public void delete(int id) {
+    aS.deleteById(id);
     }
 }

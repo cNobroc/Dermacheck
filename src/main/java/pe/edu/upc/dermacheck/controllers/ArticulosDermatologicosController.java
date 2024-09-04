@@ -2,9 +2,8 @@ package pe.edu.upc.dermacheck.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.dermacheck.dtos.ArticulosDermatologicosDTO;
 import pe.edu.upc.dermacheck.entities.ArticulosDermatologicos;
 import pe.edu.upc.dermacheck.serviceinterfaces.IArticulosDermatologicosService;
 
@@ -15,15 +14,34 @@ import java.util.stream.Collectors;
 @RequestMapping("/articulosdermatologicos")
 public class ArticulosDermatologicosController {
     @Autowired
-    private IArticulosDermatologicosService articulosDermatologicosService;
+    private IArticulosDermatologicosService aS;
 
     // Comentario 1234
     @GetMapping
 
     public List<ArticulosDermatologicos> listar() {
-        return articulosDermatologicosService.list().stream().map(x -> {
+        return aS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(x, ArticulosDermatologicos.class);
         }).collect(Collectors.toList());
+    }
+
+    @PostMapping
+    public void registrar(@RequestBody ArticulosDermatologicosDTO dto) {
+        ModelMapper m = new ModelMapper();
+        ArticulosDermatologicos ar = m.map(dto, ArticulosDermatologicos.class);
+        aS.insert(ar);
+    }
+
+    @PatchMapping
+    public void modificar(@RequestBody ArticulosDermatologicosDTO dto){
+        ModelMapper m=new ModelMapper();
+        ArticulosDermatologicos ar=m.map(dto,ArticulosDermatologicos.class);
+        aS.update(ar);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+
+        aS.delete(id);
     }
 }

@@ -1,5 +1,6 @@
 package pe.edu.upc.dermacheck.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,6 +9,8 @@ public class ArticulosDermatologicos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idArticulosDermatologico;
+    @Column(name = "nombreRevista", nullable = false, length = 60)
     private String nombreRevista;
 
     @Column(name = "tipoRevista", nullable = false, length = 60)
@@ -22,6 +25,14 @@ public class ArticulosDermatologicos {
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
+
+    public int getIdArticulosDermatologico() {
+        return idArticulosDermatologico;
+    }
+
+    public void setIdArticulosDermatologico(int idArticulosDermatologico) {
+        this.idArticulosDermatologico = idArticulosDermatologico;
+    }
 
     public ArticulosDermatologicos() {
     }
