@@ -23,53 +23,24 @@ public class Tratamiento {
     @OneToMany(mappedBy = "tratamiento")
     private List<DiagnosticoxTratamiento> tratamientos;
 
-    @ManyToOne
-    @JoinColumn(name = "idEspecialista", nullable = false)
-    private Especialista especialista;
-
 
     public Tratamiento() {
     }
 
-    public Tratamiento(int idTratamiento, String nombreTratamiento, String descripcionTratamiento, String materialMedicinal, List<DiagnosticoxTratamiento> tratamientos, Especialista especialista) {
+    public Tratamiento(int idTratamiento, String nombreTratamiento, String descripcionTratamiento, String materialMedicinal, List<DiagnosticoxTratamiento> tratamientos) {
         this.idTratamiento = idTratamiento;
         this.nombreTratamiento = nombreTratamiento;
         this.descripcionTratamiento = descripcionTratamiento;
         this.materialMedicinal = materialMedicinal;
         this.tratamientos = tratamientos;
-        this.especialista = especialista;
     }
 
-    public Especialista getEspecialista() {
-        return especialista;
+    public int getIdTratamiento() {
+        return idTratamiento;
     }
 
-    public void setEspecialista(Especialista especialista) {
-        this.especialista = especialista;
-    }
-
-    public List<DiagnosticoxTratamiento> getTratamientos() {
-        return tratamientos;
-    }
-
-    public void setTratamientos(List<DiagnosticoxTratamiento> tratamientos) {
-        this.tratamientos = tratamientos;
-    }
-
-    public String getMaterialMedicinal() {
-        return materialMedicinal;
-    }
-
-    public void setMaterialMedicinal(String materialMedicinal) {
-        this.materialMedicinal = materialMedicinal;
-    }
-
-    public String getDescripcionTratamiento() {
-        return descripcionTratamiento;
-    }
-
-    public void setDescripcionTratamiento(String descripcionTratamiento) {
-        this.descripcionTratamiento = descripcionTratamiento;
+    public void setIdTratamiento(int idTratamiento) {
+        this.idTratamiento = idTratamiento;
     }
 
     public String getNombreTratamiento() {
@@ -80,11 +51,27 @@ public class Tratamiento {
         this.nombreTratamiento = nombreTratamiento;
     }
 
-    public int getIdTratamiento() {
-        return idTratamiento;
+    public String getDescripcionTratamiento() {
+        return descripcionTratamiento;
     }
 
-    public void setIdTratamiento(int idTratamiento) {
-        this.idTratamiento = idTratamiento;
+    public void setDescripcionTratamiento(String descripcionTratamiento) {
+        this.descripcionTratamiento = descripcionTratamiento;
+    }
+
+    public String getMaterialMedicinal() {
+        return materialMedicinal;
+    }
+
+    public void setMaterialMedicinal(String materialMedicinal) {
+        this.materialMedicinal = materialMedicinal;
+    }
+
+    public List<DiagnosticoxTratamiento> getTratamientos() {
+        return tratamientos;
+    }
+
+    public void setTratamientos(List<DiagnosticoxTratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
     }
 }
