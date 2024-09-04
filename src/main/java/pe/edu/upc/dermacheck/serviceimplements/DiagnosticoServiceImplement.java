@@ -17,4 +17,19 @@ public class DiagnosticoServiceImplement implements IDiagnosticoService {
     public List<Diagnostico> list() {
         return diagnosticoRepository.findAll();
     }
+
+    @Override
+    public void insert(Diagnostico diagnostico) {
+        diagnosticoRepository.save(diagnostico);
+    }
+
+    @Override
+    public void update(Diagnostico diagnostico) {
+        diagnosticoRepository.save(diagnostico);
+    }
+
+    @Override
+    public void delete(int id) {
+        diagnosticoRepository.deleteById(id);
+    }
 }

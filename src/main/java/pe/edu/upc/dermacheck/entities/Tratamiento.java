@@ -1,5 +1,6 @@
 package pe.edu.upc.dermacheck.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class Tratamiento {
     @Column(name = "materialMedicinal", nullable = false, length = 300)
     private String materialMedicinal;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tratamiento")
     private List<DiagnosticoxTratamiento> tratamientos;
 

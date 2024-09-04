@@ -38,7 +38,6 @@ public class Usuario {
     @Column(name = "esPremium")
     private boolean esPremium;
 
-
     @ManyToOne
     @JoinColumn(name = "idRol", nullable = false)
     private Rol rol;

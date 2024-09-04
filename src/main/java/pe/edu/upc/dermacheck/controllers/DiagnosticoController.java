@@ -2,12 +2,13 @@ package pe.edu.upc.dermacheck.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.DiagnosticoDTO;
+import pe.edu.upc.dermacheck.dtos.RolDTO;
 import pe.edu.upc.dermacheck.dtos.UsuarioDTO;
 import pe.edu.upc.dermacheck.dtos.UsuarioDiagnosticoDTO;
+import pe.edu.upc.dermacheck.entities.Diagnostico;
+import pe.edu.upc.dermacheck.entities.Rol;
 import pe.edu.upc.dermacheck.serviceinterfaces.IDiagnosticoService;
 import pe.edu.upc.dermacheck.serviceinterfaces.IUsuarioService;
 
@@ -28,12 +29,30 @@ public class DiagnosticoController {
         return usuarioService.listarUsuariosPorDiagnosticos();
     }
 
+    @PostMapping
+    public void registrar (@RequestBody DiagnosticoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Diagnostico diagnostico = m.map(dto, Diagnostico.class);
+        diagnosticoService.insert(diagnostico);
+    }
+
     @GetMapping
     public List<DiagnosticoDTO> listar() {
         return diagnosticoService.list().stream().map(diagnostico -> {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(diagnostico, DiagnosticoDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @PatchMapping
+    public void modificar(@RequestBody DiagnosticoDTO dto){
+        ModelMapper m=new ModelMapper();
+        Diagnostico d=m.map(dto,Diagnostico.class);
+        diagnosticoService.update(d);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        diagnosticoService.delete(id);
     }
 }
 
