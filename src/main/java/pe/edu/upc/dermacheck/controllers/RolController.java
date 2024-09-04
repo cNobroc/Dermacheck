@@ -32,6 +32,17 @@ public class RolController {
         Rol rol = m.map(rolDTO, Rol.class);
         rolService.insert(rol);
     }
+    @PatchMapping
+    public void modificar(@RequestBody RolDTO dto){
+        ModelMapper m=new ModelMapper();
+        Rol ro=m.map(dto,Rol.class);
+        rolService.update(ro);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+
+        rolService.delete(id);
+    }
 }
 
 

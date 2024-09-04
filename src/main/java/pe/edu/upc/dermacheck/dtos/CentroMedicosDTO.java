@@ -3,9 +3,26 @@ package pe.edu.upc.dermacheck.dtos;
 
 public class CentroMedicosDTO {
     private int idCentroMedico;
-    private int nombre;
+    private String nombre;
     private int telefono;
     private String especialidades;
+    private String direccion;
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
     public int getIdCentroMedico() {
         return idCentroMedico;
@@ -15,13 +32,7 @@ public class CentroMedicosDTO {
         this.idCentroMedico = idCentroMedico;
     }
 
-    public int getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(int nombre) {
-        this.nombre = nombre;
-    }
 
     public int getTelefono() {
         return telefono;

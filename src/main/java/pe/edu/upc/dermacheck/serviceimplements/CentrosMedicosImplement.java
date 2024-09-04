@@ -18,4 +18,19 @@ public class CentrosMedicosImplement implements ICentroMedicosService{
     public List<CentrosMedicos> list(){
         return CR.findAll();
     }
+
+    @Override
+    public void insert(CentrosMedicos centrosMedicos) {
+        CR.save(centrosMedicos);
+    }
+
+    @Override
+    public void update(CentrosMedicos centrosMedicos) {
+    CR.save(centrosMedicos);
+    }
+
+    @Override
+    public void delete(int id) {
+    CR.deleteById(id);
+    }
 }
