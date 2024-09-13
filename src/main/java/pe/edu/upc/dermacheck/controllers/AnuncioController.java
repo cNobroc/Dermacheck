@@ -43,4 +43,8 @@ public class AnuncioController {
         anunciosService.delete(id);
     }
 
+    @GetMapping("/anuncios-count")
+    public List<Object[]> contarAnunciosPorUsuario() {
+        return anunciosService.countAnunciosByUsuario();
+    }
 }

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     List<Usuario> findByEsPremiumTrue();
+
 }

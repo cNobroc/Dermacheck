@@ -7,6 +7,7 @@ import pe.edu.upc.dermacheck.dtos.UsuarioDTO;
 import pe.edu.upc.dermacheck.dtos.UsuarioDiagnosticoDTO;
 import pe.edu.upc.dermacheck.entities.Usuario;
 import pe.edu.upc.dermacheck.repositories.IDiagnosticoRepository;
+
 import pe.edu.upc.dermacheck.repositories.IUsuarioRepository;
 import pe.edu.upc.dermacheck.serviceinterfaces.IUsuarioService;
 
@@ -28,8 +29,6 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     @Autowired
     private IDiagnosticoRepository diagnosticoRepository;
-
-
 
     @Override
     public List<Usuario> list() {
@@ -61,5 +60,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public void delete(int id) {
         usuarioRepository.deleteById(id);
     }
+
+
 
 }
