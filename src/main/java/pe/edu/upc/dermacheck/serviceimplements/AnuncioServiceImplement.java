@@ -33,9 +33,10 @@ public class AnuncioServiceImplement implements IAnunciosService {
     public void delete(int id) {
 
     }
+
     @Override
-    public List<Object[]> countAnunciosByUsuario() {
-        return anuncioRepository.countAnunciosByUsuario();
+    public List<String[]> CantidadAnunciosPorUsuario() {
+        return anuncioRepository.AnunciosXUsuario();
     }
 
 }

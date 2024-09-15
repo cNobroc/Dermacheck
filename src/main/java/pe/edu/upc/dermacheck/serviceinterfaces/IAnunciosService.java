@@ -9,5 +9,5 @@ public interface IAnunciosService {
     public void insert(Anuncio anuncio);
     public void update(Anuncio anuncio);
     public void delete(int id);
-    public List<Object[]> countAnunciosByUsuario();
+    public List<String[]> CantidadAnunciosPorUsuario();
 }

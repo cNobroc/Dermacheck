@@ -4,9 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.AnuncioDTO;
+import pe.edu.upc.dermacheck.dtos.AnuncioxUsuarioDTO;
 import pe.edu.upc.dermacheck.entities.Anuncio;
 import pe.edu.upc.dermacheck.serviceinterfaces.IAnunciosService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,8 +45,16 @@ public class AnuncioController {
         anunciosService.delete(id);
     }
 
-    @GetMapping("/anuncios-count")
-    public List<Object[]> contarAnunciosPorUsuario() {
-        return anunciosService.countAnunciosByUsuario();
+    @GetMapping("/AnunciosxUsuarios")
+    public List<AnuncioxUsuarioDTO> contarAnunciosPorUsuario() {
+        List<String[]>lista=anunciosService.CantidadAnunciosPorUsuario();
+            List<AnuncioxUsuarioDTO>listaDTO=new ArrayList<>();
+                    for(String[]columna:lista){
+                        AnuncioxUsuarioDTO dto=new AnuncioxUsuarioDTO();
+                        dto.setNombres(columna[0]);
+                        dto.setCount(Integer.parseInt(columna[1]));
+                        listaDTO.add(dto);
+                    }
+        return listaDTO;
     }
 }
