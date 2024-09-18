@@ -4,14 +4,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.DiagnosticoDTO;
-import pe.edu.upc.dermacheck.dtos.RolDTO;
-import pe.edu.upc.dermacheck.dtos.UsuarioDTO;
 import pe.edu.upc.dermacheck.dtos.UsuarioDiagnosticoDTO;
 import pe.edu.upc.dermacheck.entities.Diagnostico;
-import pe.edu.upc.dermacheck.entities.Rol;
 import pe.edu.upc.dermacheck.serviceinterfaces.IDiagnosticoService;
 import pe.edu.upc.dermacheck.serviceinterfaces.IUsuarioService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +28,7 @@ public class DiagnosticoController {
     }
 
     @PostMapping
-    public void registrar (@RequestBody DiagnosticoDTO dto) {
+    public void registrar(@RequestBody DiagnosticoDTO dto) {
         ModelMapper m = new ModelMapper();
         Diagnostico diagnostico = m.map(dto, Diagnostico.class);
         diagnosticoService.insert(diagnostico);
@@ -45,15 +43,25 @@ public class DiagnosticoController {
     }
 
     @PatchMapping
-    public void modificar(@RequestBody DiagnosticoDTO dto){
-        ModelMapper m=new ModelMapper();
-        Diagnostico d=m.map(dto,Diagnostico.class);
+    public void modificar(@RequestBody DiagnosticoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Diagnostico d = m.map(dto, Diagnostico.class);
         diagnosticoService.update(d);
     }
+
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id){
+    public void eliminar(@PathVariable("id") Integer id) {
         diagnosticoService.delete(id);
     }
+
+    @GetMapping("/diagnosticos")
+    public List<DiagnosticoDTO> listarPorFecha(@RequestParam("fecha_inicio") LocalDate fechaInicio, @RequestParam("fecha_fin") LocalDate fechaFin) {
+        return diagnosticoService.listarDiagnosticosPorFecha(fechaInicio, fechaFin).stream().map(x -> {
+                    ModelMapper m = new ModelMapper();
+                    return m.map(x, DiagnosticoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
 }
 
 

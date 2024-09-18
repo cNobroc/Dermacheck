@@ -6,6 +6,7 @@ import pe.edu.upc.dermacheck.entities.Diagnostico;
 import pe.edu.upc.dermacheck.repositories.IDiagnosticoRepository;
 import pe.edu.upc.dermacheck.serviceinterfaces.IDiagnosticoService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -31,5 +32,10 @@ public class DiagnosticoServiceImplement implements IDiagnosticoService {
     @Override
     public void delete(int id) {
         diagnosticoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Diagnostico> listarDiagnosticosPorFecha(LocalDate fecha_inicio, LocalDate fecha_fin) {
+        return diagnosticoRepository.listarDiagnosticosPorFecha(fecha_inicio, fecha_fin);
     }
 }
