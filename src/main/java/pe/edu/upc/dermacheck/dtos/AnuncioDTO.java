@@ -1,11 +1,39 @@
 package pe.edu.upc.dermacheck.dtos;
 
+import pe.edu.upc.dermacheck.entities.Usuario;
+
 public class AnuncioDTO {
     private int idAnuncio;
     private String url;
     private String descripcion;
     private int creditos;
-    private int idUsuario;
+    private double IngresosPorAnuncioSoles;
+    private int duracionMinutos;
+    private Usuario user;
+
+    public double getIngresosPorAnuncioSoles() {
+        return IngresosPorAnuncioSoles;
+    }
+
+    public void setIngresosPorAnuncioSoles(double ingresosPorAnuncioSoles) {
+        IngresosPorAnuncioSoles = ingresosPorAnuncioSoles;
+    }
+
+    public int getDuracionMinutos() {
+        return duracionMinutos;
+    }
+
+    public void setDuracionMinutos(int duracionMinutos) {
+        this.duracionMinutos = duracionMinutos;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
 
     public int getCreditos() {
         return creditos;
@@ -39,11 +67,5 @@ public class AnuncioDTO {
         this.descripcion = descripcion;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
 }

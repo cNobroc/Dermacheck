@@ -32,9 +32,9 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             "GROUP BY   u.nombres\n" +
             "ORDER BY cantidad_enfermedades DESC;",nativeQuery = true)
     public List<String[]> EnfermedadesXUsuario();
-@Query(value="SELECT u.nombres, SUM(a.creditos) AS total_creditos\n" +
+@Query(value="SELECT u.nombres ,SUM(a.creditos) AS total_creditos\n" +
         "FROM usuario u\n" +
-        "JOIN anuncio a ON u.id_usuario = a.id_usuario\n" +
+        "JOIN anuncio a ON u.id_usuario = a.user_id\n" +
         "GROUP BY u.nombres;",nativeQuery = true)
     public List<String[]> AnunciosCreditosXUsuario();
 }

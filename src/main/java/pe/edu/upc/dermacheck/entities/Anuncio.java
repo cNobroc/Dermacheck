@@ -18,29 +18,28 @@ public class Anuncio {
     @Column(name = "creditos", nullable = false)
     private int creditos;
 
-    @Column(name = "idUsuario", nullable = false)
-    private int idUsuario;
+    @Column(name = "IngresosPorAnuncioSoles", nullable = false)
+    private double IngresosPorAnuncioSoles;
+
+    @Column(name = "duracionMinutos", nullable = false)
+    private int duracionMinutos;
 
 
-
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Usuario user;
 
     public Anuncio() {
     }
 
-    public Anuncio(int idAnuncio, String url, String descripcion, int creditos, int idUsuario) {
+    public Anuncio(int idAnuncio, String url, String descripcion, int creditos, double ingresosPorAnuncioSoles, int duracionMinutos, Usuario user) {
         this.idAnuncio = idAnuncio;
         this.url = url;
         this.descripcion = descripcion;
         this.creditos = creditos;
-        this.idUsuario = idUsuario;
-    }
-
-    public int getCreditos() {
-        return creditos;
-    }
-
-    public void setCreditos(int creditos) {
-        this.creditos = creditos;
+        IngresosPorAnuncioSoles = ingresosPorAnuncioSoles;
+        this.duracionMinutos = duracionMinutos;
+        this.user = user;
     }
 
     public int getIdAnuncio() {
@@ -59,6 +58,14 @@ public class Anuncio {
         this.url = url;
     }
 
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -67,11 +74,27 @@ public class Anuncio {
         this.descripcion = descripcion;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public double getIngresosPorAnuncioSoles() {
+        return IngresosPorAnuncioSoles;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIngresosPorAnuncioSoles(double ingresosPorAnuncioSoles) {
+        IngresosPorAnuncioSoles = ingresosPorAnuncioSoles;
+    }
+
+    public int getDuracionMinutos() {
+        return duracionMinutos;
+    }
+
+    public void setDuracionMinutos(int duracionMinutos) {
+        this.duracionMinutos = duracionMinutos;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 }
