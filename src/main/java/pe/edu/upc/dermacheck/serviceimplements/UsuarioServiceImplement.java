@@ -29,25 +29,13 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
     private IDiagnosticoRepository diagnosticoRepository;
 
-
-
     @Override
     public List<Usuario> list() {
         return usuarioRepository.findAll();
     }
 
     @Override
-    public List<UsuarioDiagnosticoDTO> listarUsuariosPorDiagnosticos() {
-        return diagnosticoRepository.listarUsuariosPorDiagnosticos().stream()
-                .map(result -> {
-                    Usuario usuario = (Usuario) result[0];
-                    Long cantidadDiagnosticos = (Long) result[1];
-                    ModelMapper modelMapper = new ModelMapper();
-                    UsuarioDTO usuarioDTO = modelMapper.map(usuario, UsuarioDTO.class);
-                    return new UsuarioDiagnosticoDTO(usuarioDTO, cantidadDiagnosticos);
-                })
-                .collect(Collectors.toList());
-    }
+    public List<String[]> CantidadDiagnosticosPorUsuario() {return usuarioRepository.DiagnosticosXUsuario();}
 
     @Override
     public Usuario listId(int id) {

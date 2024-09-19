@@ -10,7 +10,4 @@ import java.util.List;
 @Repository
 public interface IDiagnosticoRepository extends JpaRepository<Diagnostico, Integer> {
 
-    @Query("SELECT d.usuario, COUNT(d) FROM Diagnostico d GROUP BY d.usuario ORDER BY COUNT(d) DESC")
-    List<Object[]> listarUsuariosPorDiagnosticos();
-
 }

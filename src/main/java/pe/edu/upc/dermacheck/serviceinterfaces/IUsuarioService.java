@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IUsuarioService {
     List<Usuario> list();
-    List<UsuarioDiagnosticoDTO> listarUsuariosPorDiagnosticos();
+    List<String[]> CantidadDiagnosticosPorUsuario();
     List<Usuario> listarUsuariosPremium();
     public void insert(Usuario usuario);
     public Usuario listId(int id);

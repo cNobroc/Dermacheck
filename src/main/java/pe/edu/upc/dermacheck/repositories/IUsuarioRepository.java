@@ -19,4 +19,11 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Modifying
     @Query(value = "INSERT INTO Rol (nombreRol, idUsuario) VALUES (:nombreRol, :idUsuario)", nativeQuery = true)
     public void insertarRol(@Param("nombreRol") String nombreRol, @Param("idUsuario") int idUsuario);
+
+    @Query(value = "SELECT u.nombres, COUNT(d.id_diagnostico)\n" +
+            " FROM Diagnostico d JOIN Usuario u \n" +
+            " ON d.id_usuario = u.id_usuario\n" +
+            " GROUP BY u.nombres", nativeQuery = true)
+    public List<String[]> DiagnosticosXUsuario();
+
 }

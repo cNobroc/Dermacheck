@@ -4,10 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.dermacheck.dtos.AnuncioxUsuarioDTO;
+import pe.edu.upc.dermacheck.dtos.DiagnosticoXUsuarioDTO;
+import pe.edu.upc.dermacheck.dtos.DiagnosticoxTratamientoDTO;
 import pe.edu.upc.dermacheck.dtos.UsuarioDTO;
 import pe.edu.upc.dermacheck.entities.Usuario;
 import pe.edu.upc.dermacheck.serviceinterfaces.IUsuarioService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,5 +65,17 @@ public class UsuarioController {
         usuarioService.delete(id);
     }
 
+    @GetMapping("/listar-por-usuario")
+    public List<DiagnosticoXUsuarioDTO> CantidadDiagnosticosPorUsuario() {
+        List<String[]>lista=usuarioService.CantidadDiagnosticosPorUsuario();
+        List<DiagnosticoXUsuarioDTO>listaDTO=new ArrayList<>();
+        for(String[]columna:lista){
+            DiagnosticoXUsuarioDTO dto=new DiagnosticoXUsuarioDTO();
+            dto.setNombres(columna[0]);
+            dto.setCount(Integer.parseInt(columna[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
 }
 

@@ -4,10 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.dermacheck.dtos.DiagnosticoDTO;
-import pe.edu.upc.dermacheck.dtos.RolDTO;
-import pe.edu.upc.dermacheck.dtos.UsuarioDTO;
-import pe.edu.upc.dermacheck.dtos.UsuarioDiagnosticoDTO;
+import pe.edu.upc.dermacheck.dtos.*;
 import pe.edu.upc.dermacheck.entities.Diagnostico;
 import pe.edu.upc.dermacheck.entities.Rol;
 import pe.edu.upc.dermacheck.serviceinterfaces.IDiagnosticoService;
@@ -26,11 +23,6 @@ public class DiagnosticoController {
 
     @Autowired
     private IUsuarioService usuarioService;
-
-    @GetMapping("/listar-por-usuario")
-    public List<UsuarioDiagnosticoDTO> listarUsuariosPorDiagnosticos() {
-        return usuarioService.listarUsuariosPorDiagnosticos();
-    }
 
     @PostMapping
     public void registrar (@RequestBody DiagnosticoDTO dto) {
