@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/diagnostico")
+@RequestMapping("/diagnosticos")
 @PreAuthorize("hasAuthority('ADMIN')")
 
 public class DiagnosticoController {

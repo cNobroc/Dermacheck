@@ -11,7 +11,7 @@ import pe.edu.upc.dermacheck.serviceinterfaces.IRecuperacionService;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
-@RequestMapping("/Recuperaciones")
+@RequestMapping("/recuperaciones")
 @PreAuthorize("hasAuthority('ADMIN')")
 
 public class RecuperacionController {

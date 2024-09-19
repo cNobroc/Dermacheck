@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/diagnostico-tratamiento")
+@RequestMapping("/diagnosticos-tratamientos")
 @PreAuthorize("hasAuthority('ADMIN')")
 
 public class DiagnosticoxTratamientoController {

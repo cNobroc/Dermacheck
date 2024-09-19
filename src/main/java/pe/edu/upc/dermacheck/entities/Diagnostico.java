@@ -2,8 +2,9 @@ package pe.edu.upc.dermacheck.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import java.sql.Time;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "Diagnostico")
@@ -13,13 +14,16 @@ public class Diagnostico {
     private int idDiagnostico;
 
     @Column(name = "fechaDiagnostico", nullable = false)
-    private Date fechaDiagnostico;
+    private LocalDate fechaDiagnostico;
 
     @Column(name = "horaDiagnostico", nullable = false)
-    private Time horaDiagnostico;
+    private LocalTime horaDiagnostico;
 
     @Column(name = "imagenDiagnostico", nullable = false)
     private byte[] imagenDiagnostico;
+
+    @Column(name = "puntuacion", nullable = false)
+    private int puntuacion;
 
     @JsonIgnore
     @ManyToOne
@@ -34,11 +38,12 @@ public class Diagnostico {
     public Diagnostico() {
     }
 
-    public Diagnostico(int idDiagnostico, Date fechaDiagnostico, Time horaDiagnostico, byte[] imagenDiagnostico, Enfermedad enfermedad, Usuario usuario) {
+    public Diagnostico(int idDiagnostico, LocalDate fechaDiagnostico, LocalTime horaDiagnostico, byte[] imagenDiagnostico, int puntuacion, Enfermedad enfermedad, Usuario usuario) {
         this.idDiagnostico = idDiagnostico;
         this.fechaDiagnostico = fechaDiagnostico;
         this.horaDiagnostico = horaDiagnostico;
         this.imagenDiagnostico = imagenDiagnostico;
+        this.puntuacion = puntuacion;
         this.enfermedad = enfermedad;
         this.usuario = usuario;
     }
@@ -51,19 +56,19 @@ public class Diagnostico {
         this.idDiagnostico = idDiagnostico;
     }
 
-    public Date getFechaDiagnostico() {
+    public LocalDate getFechaDiagnostico() {
         return fechaDiagnostico;
     }
 
-    public void setFechaDiagnostico(Date fechaDiagnostico) {
+    public void setFechaDiagnostico(LocalDate fechaDiagnostico) {
         this.fechaDiagnostico = fechaDiagnostico;
     }
 
-    public Time getHoraDiagnostico() {
+    public LocalTime getHoraDiagnostico() {
         return horaDiagnostico;
     }
 
-    public void setHoraDiagnostico(Time horaDiagnostico) {
+    public void setHoraDiagnostico(LocalTime horaDiagnostico) {
         this.horaDiagnostico = horaDiagnostico;
     }
 
@@ -73,6 +78,14 @@ public class Diagnostico {
 
     public void setImagenDiagnostico(byte[] imagenDiagnostico) {
         this.imagenDiagnostico = imagenDiagnostico;
+    }
+
+    public int getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
     }
 
     public Enfermedad getEnfermedad() {
