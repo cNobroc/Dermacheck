@@ -32,12 +32,6 @@ public class Usuario implements Serializable {
     @Column(name = "apellidos", nullable = false, length = 20)
     private String apellidos;
 
-    @Column(name = "nombreUsuario", nullable = false, length = 20)
-    private String nombreUsuario;
-
-    @Column(name = "contrasenha", nullable = false, length = 15)
-    private String contrasenha;
-
     @Column(name = "correo", nullable = false, length = 20)
     private String correo;
 
@@ -52,6 +46,24 @@ public class Usuario implements Serializable {
 
     @Column(name = "esPremium")
     private boolean esPremium;
+
+    public Usuario() {
+    }
+
+    public Usuario(int idUsuario, String username, String password, Boolean enabled, List<Rol> roles, String nombres, String apellidos, String correo, String sitioWeb, int telefono, String nombreEmpresa, boolean esPremium) {
+        this.idUsuario = idUsuario;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.sitioWeb = sitioWeb;
+        this.telefono = telefono;
+        this.nombreEmpresa = nombreEmpresa;
+        this.esPremium = esPremium;
+    }
 
     public int getIdUsuario() {
         return idUsuario;
@@ -109,22 +121,6 @@ public class Usuario implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public String getContrasenha() {
-        return contrasenha;
-    }
-
-    public void setContrasenha(String contrasenha) {
-        this.contrasenha = contrasenha;
-    }
-
     public String getCorreo() {
         return correo;
     }
@@ -133,20 +129,20 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
-    public int getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
-
     public String getSitioWeb() {
         return sitioWeb;
     }
 
     public void setSitioWeb(String sitioWeb) {
         this.sitioWeb = sitioWeb;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
     }
 
     public String getNombreEmpresa() {

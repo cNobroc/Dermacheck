@@ -2,6 +2,7 @@ package pe.edu.upc.dermacheck.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.RecuperacionDTO;
 import pe.edu.upc.dermacheck.entities.Recuperacion;
@@ -11,6 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/Recuperaciones")
+@PreAuthorize("hasAuthority('ADMIN')")
+
 public class RecuperacionController {
     @Autowired
 

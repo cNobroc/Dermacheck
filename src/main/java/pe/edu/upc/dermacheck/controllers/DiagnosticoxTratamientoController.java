@@ -2,6 +2,7 @@ package pe.edu.upc.dermacheck.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.DiagnosticoxTratamientoDTO;
 import pe.edu.upc.dermacheck.entities.DiagnosticoxTratamiento;
@@ -12,35 +13,37 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/diagnostico-tratamiento")
+@PreAuthorize("hasAuthority('ADMIN')")
+
 public class DiagnosticoxTratamientoController {
+
     @Autowired
     private IDiagnosticoxTratamientoService diagnosticoxTratamientoService;
 
     @PostMapping
     public void registrar(@RequestBody DiagnosticoxTratamientoDTO dto) {
-        ModelMapper m = new ModelMapper();
-        DiagnosticoxTratamiento d = m.map(dto, DiagnosticoxTratamiento.class);
-        diagnosticoxTratamientoService.insert(d);
+        ModelMapper modelMapper = new ModelMapper();
+        DiagnosticoxTratamiento diagnosticoxTratamiento = modelMapper.map(dto, DiagnosticoxTratamiento.class);
+        diagnosticoxTratamientoService.insert(diagnosticoxTratamiento);
     }
 
     @GetMapping
     public List<DiagnosticoxTratamientoDTO> listar() {
-        return diagnosticoxTratamientoService.list().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, DiagnosticoxTratamientoDTO.class);
+        return diagnosticoxTratamientoService.list().stream().map(diagnosticoxTratamiento -> {
+            ModelMapper modelMapper = new ModelMapper();
+            return modelMapper.map(diagnosticoxTratamiento, DiagnosticoxTratamientoDTO.class);
         }).collect(Collectors.toList());
     }
 
     @PatchMapping
     public void modificar(@RequestBody DiagnosticoxTratamientoDTO dto) {
-        ModelMapper m = new ModelMapper();
-        DiagnosticoxTratamiento d = m.map(dto, DiagnosticoxTratamiento.class);
-        diagnosticoxTratamientoService.update(d);
+        ModelMapper modelMapper = new ModelMapper();
+        DiagnosticoxTratamiento diagnosticoxTratamiento = modelMapper.map(dto, DiagnosticoxTratamiento.class);
+        diagnosticoxTratamientoService.update(diagnosticoxTratamiento);
     }
 
-    @DeleteMapping("/{idDiagnostico}/{idTratamiento}")
-    public void eliminar(@PathVariable("idDiagnostico") int idDiagnostico,
-                         @PathVariable("idTratamiento") int idTratamiento) {
-        diagnosticoxTratamientoService.delete(idDiagnostico, idTratamiento);
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id) {
+        diagnosticoxTratamientoService.delete(id);
     }
 }

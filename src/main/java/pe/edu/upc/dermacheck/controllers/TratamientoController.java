@@ -2,6 +2,7 @@ package pe.edu.upc.dermacheck.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.TratamientoDTO;
 import pe.edu.upc.dermacheck.entities.Tratamiento;
@@ -12,6 +13,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tratamiento")
+@PreAuthorize("hasAuthority('ADMIN')")
+
 public class TratamientoController {
     @Autowired
     private ITratamientoService tratamientoService;

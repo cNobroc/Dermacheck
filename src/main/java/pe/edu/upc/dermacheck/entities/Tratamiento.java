@@ -1,9 +1,6 @@
 package pe.edu.upc.dermacheck.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name = "Tratamiento")
@@ -21,20 +18,15 @@ public class Tratamiento {
     @Column(name = "materialMedicinal", nullable = false, length = 300)
     private String materialMedicinal;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "tratamiento")
-    private List<DiagnosticoxTratamiento> tratamientos;
-
 
     public Tratamiento() {
     }
 
-    public Tratamiento(int idTratamiento, String nombreTratamiento, String descripcionTratamiento, String materialMedicinal, List<DiagnosticoxTratamiento> tratamientos) {
+    public Tratamiento(int idTratamiento, String nombreTratamiento, String descripcionTratamiento, String materialMedicinal) {
         this.idTratamiento = idTratamiento;
         this.nombreTratamiento = nombreTratamiento;
         this.descripcionTratamiento = descripcionTratamiento;
         this.materialMedicinal = materialMedicinal;
-        this.tratamientos = tratamientos;
     }
 
     public int getIdTratamiento() {
@@ -67,13 +59,5 @@ public class Tratamiento {
 
     public void setMaterialMedicinal(String materialMedicinal) {
         this.materialMedicinal = materialMedicinal;
-    }
-
-    public List<DiagnosticoxTratamiento> getTratamientos() {
-        return tratamientos;
-    }
-
-    public void setTratamientos(List<DiagnosticoxTratamiento> tratamientos) {
-        this.tratamientos = tratamientos;
     }
 }

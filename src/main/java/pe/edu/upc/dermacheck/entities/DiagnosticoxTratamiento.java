@@ -3,42 +3,39 @@ package pe.edu.upc.dermacheck.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "diagnosticox_tratamiento")
 public class DiagnosticoxTratamiento {
 
-    @EmbeddedId
-    private
-    DiagnosticoxTratamientoId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idDiagnosticoxTratamiento;
 
     @JsonIgnore
     @ManyToOne
-    @MapsId("idDiagnostico")
-    @JoinColumn(name = "id_diagnostico", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "id_diagnostico", nullable = false)
     private Diagnostico diagnostico;
 
     @JsonIgnore
     @ManyToOne
-    @MapsId("idTratamiento")
-    @JoinColumn(name = "id_tratamiento", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "id_tratamiento", nullable = false)
     private Tratamiento tratamiento;
 
     public DiagnosticoxTratamiento() {
     }
 
-    public DiagnosticoxTratamiento(DiagnosticoxTratamientoId id, Diagnostico diagnostico, Tratamiento tratamiento) {
-        this.id = id;
+    public DiagnosticoxTratamiento(int idDiagnosticoxTratamiento, Diagnostico diagnostico, Tratamiento tratamiento) {
+        this.idDiagnosticoxTratamiento = idDiagnosticoxTratamiento;
         this.diagnostico = diagnostico;
         this.tratamiento = tratamiento;
     }
 
-    public DiagnosticoxTratamientoId getId() {
-        return id;
+    public int getIdDiagnosticoxTratamiento() {
+        return idDiagnosticoxTratamiento;
     }
 
-    public void setId(DiagnosticoxTratamientoId id) {
-        this.id = id;
+    public void setIdDiagnosticoxTratamiento(int idDiagnosticoxTratamiento) {
+        this.idDiagnosticoxTratamiento = idDiagnosticoxTratamiento;
     }
 
     public Diagnostico getDiagnostico() {
@@ -57,4 +54,3 @@ public class DiagnosticoxTratamiento {
         this.tratamiento = tratamiento;
     }
 }
-

@@ -4,25 +4,16 @@ import pe.edu.upc.dermacheck.entities.Diagnostico;
 import pe.edu.upc.dermacheck.entities.Tratamiento;
 
 public class DiagnosticoxTratamientoDTO {
-    private int idDiagnostico;
-    private int idTratamiento;
+    private int idDiagnosticoxTratamiento;
     private Diagnostico diagnostico;
     private Tratamiento tratamiento;
 
-    public int getIdDiagnostico() {
-        return idDiagnostico;
+    public int getIdDiagnosticoxTratamiento() {
+        return idDiagnosticoxTratamiento;
     }
 
-    public void setIdDiagnostico(int idDiagnostico) {
-        this.idDiagnostico = idDiagnostico;
-    }
-
-    public int getIdTratamiento() {
-        return idTratamiento;
-    }
-
-    public void setIdTratamiento(int idTratamiento) {
-        this.idTratamiento = idTratamiento;
+    public void setIdDiagnosticoxTratamiento(int idDiagnosticoxTratamiento) {
+        this.idDiagnosticoxTratamiento = idDiagnosticoxTratamiento;
     }
 
     public Diagnostico getDiagnostico() {

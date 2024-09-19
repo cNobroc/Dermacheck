@@ -1,6 +1,5 @@
 package pe.edu.upc.dermacheck.dtos;
 
-//  DTO anuncio
 public class AnuncioDTO {
     private int idAnuncio;
     private String url;

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/anuncios")
 @PreAuthorize("hasAuthority('ADMIN')")
+
 public class AnuncioController {
     @Autowired
     private IAnunciosService anunciosService;

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/rol")
 @PreAuthorize("hasAuthority('ADMIN')")
+
 public class RolController {
     @Autowired
     private IRolService rolService;
