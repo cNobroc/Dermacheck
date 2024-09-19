@@ -38,6 +38,16 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public List<String[]> CantidadDiagnosticosPorUsuario() {return usuarioRepository.DiagnosticosXUsuario();}
 
     @Override
+    public List<String[]> CantidadEnfermedadesPorUsuario() {
+        return usuarioRepository.EnfermedadesXUsuario();
+    }
+
+    @Override
+    public List<String[]> CantidadCreditosPorUsuario() {
+        return usuarioRepository.AnunciosCreditosXUsuario();
+    }
+
+    @Override
     public Usuario listId(int id) {
         return usuarioRepository.findById(id).orElse(new Usuario());
     }

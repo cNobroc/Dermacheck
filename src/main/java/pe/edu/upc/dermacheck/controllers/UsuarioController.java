@@ -4,10 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.dermacheck.dtos.AnuncioxUsuarioDTO;
-import pe.edu.upc.dermacheck.dtos.DiagnosticoXUsuarioDTO;
-import pe.edu.upc.dermacheck.dtos.DiagnosticoxTratamientoDTO;
-import pe.edu.upc.dermacheck.dtos.UsuarioDTO;
+import pe.edu.upc.dermacheck.dtos.*;
 import pe.edu.upc.dermacheck.entities.Usuario;
 import pe.edu.upc.dermacheck.serviceinterfaces.IUsuarioService;
 
@@ -77,5 +74,30 @@ public class UsuarioController {
         }
         return listaDTO;
     }
+    @GetMapping("/Usuario-Cantidad-Enfermedades")
+    public List<EnfermedadesxUsuarioDTO> CantidadEnfermedadesPorUsuario() {
+        List<String[]>lista=usuarioService.CantidadEnfermedadesPorUsuario();
+        List<EnfermedadesxUsuarioDTO>listaDTO=new ArrayList<>();
+        for(String[]columna:lista){
+            EnfermedadesxUsuarioDTO dto=new EnfermedadesxUsuarioDTO();
+            dto.setNombreUsuario(columna[0]);
+            dto.setCantidadEnfermedades(Integer.parseInt(columna[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+    @GetMapping("/Usuario-Cantidad-Creditos")
+    public List<UsuarioxAnuncioCreditosDTO> CantidadCreditosPorUsuario() {
+        List<String[]>lista=usuarioService.CantidadCreditosPorUsuario();
+        List<UsuarioxAnuncioCreditosDTO>listaDTO=new ArrayList<>();
+        for(String[]columna:lista){
+            UsuarioxAnuncioCreditosDTO dto=new UsuarioxAnuncioCreditosDTO();
+            dto.setNombreUsuario(columna[0]);
+            dto.setCantidadCreditos(Integer.parseInt(columna[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+
 }
 

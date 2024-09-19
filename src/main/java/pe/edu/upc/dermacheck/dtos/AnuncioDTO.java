@@ -4,8 +4,16 @@ public class AnuncioDTO {
     private int idAnuncio;
     private String url;
     private String descripcion;
+    private int creditos;
     private int idUsuario;
 
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
+    }
 
     public int getIdAnuncio() {
         return idAnuncio;

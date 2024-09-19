@@ -15,18 +15,32 @@ public class Anuncio {
     @Column(name = "descripcion", nullable = false, length = 50)
     private String descripcion;
 
+    @Column(name = "creditos", nullable = false)
+    private int creditos;
+
     @Column(name = "idUsuario", nullable = false)
     private int idUsuario;
+
+
 
 
     public Anuncio() {
     }
 
-    public Anuncio(int idAnuncio, String url, String descripcion, int idUsuario) {
+    public Anuncio(int idAnuncio, String url, String descripcion, int creditos, int idUsuario) {
         this.idAnuncio = idAnuncio;
         this.url = url;
         this.descripcion = descripcion;
+        this.creditos = creditos;
         this.idUsuario = idUsuario;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
     }
 
     public int getIdAnuncio() {

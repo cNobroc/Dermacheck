@@ -25,5 +25,16 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             " ON d.id_usuario = u.id_usuario\n" +
             " GROUP BY u.nombres", nativeQuery = true)
     public List<String[]> DiagnosticosXUsuario();
-
+    @Query(value="SELECT   u.nombres,COUNT(e.id_enfermedad) AS cantidad_enfermedades\n" +
+            "FROM usuario u\n" +
+            "JOIN diagnostico d ON u.id_usuario = d.id_usuario\n" +
+            "JOIN enfermedad e ON d.id_enfermedad = e.id_enfermedad\n" +
+            "GROUP BY   u.nombres\n" +
+            "ORDER BY cantidad_enfermedades DESC;",nativeQuery = true)
+    public List<String[]> EnfermedadesXUsuario();
+@Query(value="SELECT u.nombres, SUM(a.creditos) AS total_creditos\n" +
+        "FROM usuario u\n" +
+        "JOIN anuncio a ON u.id_usuario = a.id_usuario\n" +
+        "GROUP BY u.nombres;",nativeQuery = true)
+    public List<String[]> AnunciosCreditosXUsuario();
 }
