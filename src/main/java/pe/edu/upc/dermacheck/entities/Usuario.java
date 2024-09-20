@@ -63,7 +63,7 @@ public class Usuario implements Serializable {
         this.sitioWeb = sitioWeb;
         this.telefono = telefono;
         this.nombreEmpresa = nombreEmpresa;
-        this.esPremium = esPremium; // Ahora puede ser null
+        this.esPremium = esPremium;
     }
 
     public int getIdUsuario() {

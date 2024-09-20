@@ -4,9 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.dermacheck.dtos.*;
+import pe.edu.upc.dermacheck.dtos.DiagnosticoDTO;
 import pe.edu.upc.dermacheck.entities.Diagnostico;
-import pe.edu.upc.dermacheck.entities.Rol;
 import pe.edu.upc.dermacheck.serviceinterfaces.IDiagnosticoService;
 import pe.edu.upc.dermacheck.serviceinterfaces.IUsuarioService;
 

@@ -1,5 +1,6 @@
 package pe.edu.upc.dermacheck.dtos;
 
+import pe.edu.upc.dermacheck.entities.CentrosMedicos;
 import pe.edu.upc.dermacheck.entities.Enfermedad;
 import pe.edu.upc.dermacheck.entities.Usuario;
 
@@ -11,7 +12,7 @@ public class DiagnosticoDTO {
     private LocalDate fechaDiagnostico;
     private LocalTime horaDiagnostico;
     private byte[] imagenDiagnostico;
-    private int puntuacion;  // Nuevo atributo
+    private int puntuacion;
     private Enfermedad enfermedad;
     private Usuario usuario;
 
@@ -70,4 +71,5 @@ public class DiagnosticoDTO {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
 }
