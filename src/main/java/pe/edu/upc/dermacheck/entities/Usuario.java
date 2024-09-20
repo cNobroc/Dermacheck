@@ -48,9 +48,10 @@ public class Usuario implements Serializable {
     private boolean esPremium;
 
     public Usuario() {
+        this.esPremium = false;
     }
 
-    public Usuario(int idUsuario, String username, String password, Boolean enabled, List<Rol> roles, String nombres, String apellidos, String correo, String sitioWeb, int telefono, String nombreEmpresa, boolean esPremium) {
+    public Usuario(int idUsuario, String username, String password, Boolean enabled, List<Rol> roles, String nombres, String apellidos, String correo, String sitioWeb, int telefono, String nombreEmpresa, Boolean esPremium) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
@@ -62,7 +63,7 @@ public class Usuario implements Serializable {
         this.sitioWeb = sitioWeb;
         this.telefono = telefono;
         this.nombreEmpresa = nombreEmpresa;
-        this.esPremium = esPremium;
+        this.esPremium = esPremium; // Ahora puede ser null
     }
 
     public int getIdUsuario() {
@@ -153,11 +154,11 @@ public class Usuario implements Serializable {
         this.nombreEmpresa = nombreEmpresa;
     }
 
-    public boolean isEsPremium() {
+    public Boolean getEsPremium() {
         return esPremium;
     }
 
-    public void setEsPremium(boolean esPremium) {
+    public void setEsPremium(Boolean esPremium) { // Cambiado a Boolean
         this.esPremium = esPremium;
     }
 }
