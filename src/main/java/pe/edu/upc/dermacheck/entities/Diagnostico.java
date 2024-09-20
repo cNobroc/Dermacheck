@@ -35,17 +35,23 @@ public class Diagnostico {
     @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "idCentroMedico", nullable = false)
+    private CentrosMedicos centrosMedicos;
+
     public Diagnostico() {
     }
 
-    public Diagnostico(int idDiagnostico, LocalDate fechaDiagnostico, LocalTime horaDiagnostico, byte[] imagenDiagnostico, int puntuacion, Enfermedad enfermedad, Usuario usuario) {
+    public Diagnostico(int idDiagnostico, LocalTime horaDiagnostico, LocalDate fechaDiagnostico, byte[] imagenDiagnostico, int puntuacion, Usuario usuario, CentrosMedicos centrosMedicos, Enfermedad enfermedad) {
         this.idDiagnostico = idDiagnostico;
-        this.fechaDiagnostico = fechaDiagnostico;
         this.horaDiagnostico = horaDiagnostico;
+        this.fechaDiagnostico = fechaDiagnostico;
         this.imagenDiagnostico = imagenDiagnostico;
         this.puntuacion = puntuacion;
-        this.enfermedad = enfermedad;
         this.usuario = usuario;
+        this.centrosMedicos = centrosMedicos;
+        this.enfermedad = enfermedad;
     }
 
     public int getIdDiagnostico() {
@@ -104,6 +110,7 @@ public class Diagnostico {
         this.usuario = usuario;
     }
 
+    public CentrosMedicos getCentrosMedicos() {return centrosMedicos;}
 
-
+    public void setCentrosMedicos(CentrosMedicos centrosMedicos) {this.centrosMedicos = centrosMedicos;}
 }

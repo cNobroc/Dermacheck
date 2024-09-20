@@ -32,4 +32,9 @@ public class DiagnosticoxTratamientoServiceImplement implements IDiagnosticoxTra
     public void delete(int id) {
         diagnosticoxTratamientoRepository.deleteById(id);
     }
+
+    @Override
+    public List<String[]> MaterialesMedicinalesxUsuario() {
+        return diagnosticoxTratamientoRepository.listarMaterialesMedicinalesPorUsuario();
+    }
 }

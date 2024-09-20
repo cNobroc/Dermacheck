@@ -12,7 +12,7 @@ public interface IAnuncioRepository extends JpaRepository <Anuncio, Integer> {
 
     @Query(value = "SELECT u.nombres, COUNT(a)\n" +
             " FROM Anuncio a JOIN Usuario u \n" +
-            " ON a.id_usuario = u.id_usuario \n" +
+            " ON u.id_usuario = u.id_usuario \n" +
             " GROUP BY u.nombres", nativeQuery = true)
     public List<String[]> AnunciosXUsuario();
 }

@@ -62,7 +62,7 @@ public class UsuarioController {
         usuarioService.delete(id);
     }
 
-    @GetMapping("/listar-por-usuario")
+    @GetMapping("/CantidadDiagnosticosPorUsuario")
     public List<DiagnosticoXUsuarioDTO> CantidadDiagnosticosPorUsuario() {
         List<String[]>lista=usuarioService.CantidadDiagnosticosPorUsuario();
         List<DiagnosticoXUsuarioDTO>listaDTO=new ArrayList<>();

@@ -15,6 +15,7 @@ public class DiagnosticoDTO {
     private int puntuacion;
     private Enfermedad enfermedad;
     private Usuario usuario;
+    private CentrosMedicos centrosMedicos;
 
     public int getIdDiagnostico() {
         return idDiagnostico;
@@ -71,5 +72,9 @@ public class DiagnosticoDTO {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public CentrosMedicos getCentrosMedicos() {return centrosMedicos;}
+
+    public void setCentrosMedicos(CentrosMedicos centrosMedicos) {this.centrosMedicos = centrosMedicos;}
 
 }
