@@ -1,11 +1,8 @@
 package pe.edu.upc.dermacheck.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "Rol", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "nombreRol"})})

@@ -21,10 +21,9 @@ public class Usuario implements Serializable {
     private Boolean enabled;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     private List<Rol> roles;
-
 
     @Column(name = "nombres", nullable = false, length = 20)
     private String nombres;

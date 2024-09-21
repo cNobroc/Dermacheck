@@ -31,6 +31,7 @@ public class AnuncioServiceImplement implements IAnunciosService {
 
     @Override
     public void delete(int id) {
+        anuncioRepository.deleteById(id);
     }
 
     @Override

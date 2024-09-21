@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/rol")
+@RequestMapping("/roles")
 @PreAuthorize("hasAuthority('ADMIN')")
 
 public class RolController {
@@ -43,7 +43,6 @@ public class RolController {
     }
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
-
         rolService.delete(id);
     }
 }
