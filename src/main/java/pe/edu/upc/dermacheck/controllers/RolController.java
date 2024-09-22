@@ -41,10 +41,7 @@ public class RolController {
         Rol ro=m.map(dto,Rol.class);
         rolService.update(ro);
     }
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id){
-        rolService.delete(id);
-    }
+
 }
 
 

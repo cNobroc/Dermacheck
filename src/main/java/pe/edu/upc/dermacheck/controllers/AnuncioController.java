@@ -69,7 +69,7 @@ public class AnuncioController {
 
         for (String[] columna : lista) {
             IngresosxAnuncioDTO dto = new IngresosxAnuncioDTO();
-            dto.setIdAnuncio(Integer.parseInt(columna[0]));
+            dto.setNombres (columna[0]);
             dto.setIngresos(Double.parseDouble(columna[1]));
             listaDTO.add(dto);
         }

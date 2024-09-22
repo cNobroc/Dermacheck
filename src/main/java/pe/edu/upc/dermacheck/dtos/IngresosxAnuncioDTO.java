@@ -1,15 +1,15 @@
 package pe.edu.upc.dermacheck.dtos;
 
 public class IngresosxAnuncioDTO {
-    private int idAnuncio;
+    private String nombres;
     private double ingresos;
 
-    public int getIdAnuncio() {
-        return idAnuncio;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setIdAnuncio(int idAnuncio) {
-        this.idAnuncio = idAnuncio;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
     public double getIngresos() {
