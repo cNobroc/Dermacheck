@@ -46,4 +46,11 @@ public class ArticulosDermatologicosController {
 
         aS.delete(id);
     }
+    @GetMapping("/busquedas")
+    public List<ArticulosDermatologicosDTO> buscar (@RequestParam String nombre){
+        return aS.buscar(nombre).stream().map(x->{
+            ModelMapper m=new ModelMapper();
+            return m.map(x,ArticulosDermatologicosDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

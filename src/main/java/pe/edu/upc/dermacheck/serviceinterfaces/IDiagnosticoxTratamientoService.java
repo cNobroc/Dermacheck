@@ -10,4 +10,6 @@ public interface IDiagnosticoxTratamientoService {
     public  void update(DiagnosticoxTratamiento diagnosticoxTratamiento );
     public void delete(int id);
     List<String[]> MaterialesMedicinalesxUsuario();
+    List<String[]> EstadodeDiagnosticoTratimientoTRUE();
+    List<String[]> EstadodeDiagnosticoTratimientoFALSE();
 }

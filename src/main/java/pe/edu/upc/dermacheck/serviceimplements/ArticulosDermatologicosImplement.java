@@ -29,6 +29,11 @@ public class ArticulosDermatologicosImplement implements IArticulosDermatologico
     }
 
     @Override
+    public List<ArticulosDermatologicos> buscar(String nombre) {
+       return aS.buscar(nombre);
+    }
+
+    @Override
     public void delete(int id) {
     aS.deleteById(id);
     }
