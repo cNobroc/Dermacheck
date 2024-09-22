@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/diagnosticos-tratamientos")
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista', 'Usuario')")
 
 public class DiagnosticoxTratamientoController {
 

@@ -15,7 +15,9 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/anuncios")
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAnyAuthority('ADMIN', 'Empresas anunciantes')")
+
+
 
 public class AnuncioController {
     @Autowired

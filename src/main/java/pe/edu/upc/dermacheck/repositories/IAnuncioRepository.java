@@ -11,8 +11,8 @@ import java.util.List;
 public interface IAnuncioRepository extends JpaRepository <Anuncio, Integer> {
 
     @Query(value = "SELECT u.nombres, COUNT(a)\n" +
-            " FROM Anuncio a JOIN Usuario u \n" +
-            " ON u.id_usuario = u.id_usuario \n" +
+            " FROM Anuncio a JOIN Usuario u\n" +
+            " ON a.user_id = u.id_usuario\n" +
             " GROUP BY u.nombres", nativeQuery = true)
     public List<String[]> AnunciosXUsuario();
 }

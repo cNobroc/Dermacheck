@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/articulos-dermatologicos")
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista', 'Usuario')")
 
 public class ArticulosDermatologicosController {
     @Autowired
