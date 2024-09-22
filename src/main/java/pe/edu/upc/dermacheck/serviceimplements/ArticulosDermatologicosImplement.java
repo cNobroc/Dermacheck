@@ -37,4 +37,6 @@ public class ArticulosDermatologicosImplement implements IArticulosDermatologico
     public void delete(int id) {
     aS.deleteById(id);
     }
+
+    public List<String[]> RevistasPorUsuario() {return  aS.RevistasPorUsuario(); }
 }
