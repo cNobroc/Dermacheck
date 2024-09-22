@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.ArticulosDermatologicosDTO;
+import pe.edu.upc.dermacheck.dtos.RevistasxUsuarioDTO;
 import pe.edu.upc.dermacheck.entities.ArticulosDermatologicos;
 import pe.edu.upc.dermacheck.serviceinterfaces.IArticulosDermatologicosService;
 
@@ -52,5 +53,19 @@ public class ArticulosDermatologicosController {
             ModelMapper m=new ModelMapper();
             return m.map(x,ArticulosDermatologicosDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/RevistasPorUsuario")
+    public List<RevistasxUsuarioDTO> contarRevistasPorUsuario() {
+        List<String[]> lista = aS.RevistasPorUsuario();
+
+        List<RevistasxUsuarioDTO> listaDTO = lista.stream().map(columna -> {
+            RevistasxUsuarioDTO dto = new RevistasxUsuarioDTO();
+            dto.setNombre(columna[0]);
+            dto.setCount(Integer.parseInt(columna[1]));
+            return dto;
+        }).collect(Collectors.toList());
+
+        return listaDTO;
     }
 }

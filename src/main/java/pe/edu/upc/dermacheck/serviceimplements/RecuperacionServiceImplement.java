@@ -31,4 +31,9 @@ public class RecuperacionServiceImplement implements IRecuperacionService {
     public void delete(int id) {
     rR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> RecuperacionesPorUsuario() {
+        return rR.RecuperacionesPorUsuario();
+    }
 }

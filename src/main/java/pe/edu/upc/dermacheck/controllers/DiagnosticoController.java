@@ -9,6 +9,7 @@ import pe.edu.upc.dermacheck.entities.Diagnostico;
 import pe.edu.upc.dermacheck.serviceinterfaces.IDiagnosticoService;
 import pe.edu.upc.dermacheck.serviceinterfaces.IUsuarioService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,16 @@ public class DiagnosticoController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         diagnosticoService.delete(id);
+    }
+
+    @GetMapping("/fecha")
+    public List<Diagnostico> diagnosticosPorFecha(@RequestParam("fechaInicio") LocalDate fechaInicio, @RequestParam("fechaFin") LocalDate fechaFin) {
+        return diagnosticoService.buscarPorFecha(fechaInicio, fechaFin);
+    }
+
+    @GetMapping("/maxima-puntuacion")
+    public List<Diagnostico> diagnosticosConMaximaPuntuacion() {
+        return diagnosticoService.listarDiagnosticosConPuntuacionMaximaPorUsuario();
     }
 }
 

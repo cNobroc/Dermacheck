@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.AnuncioDTO;
 import pe.edu.upc.dermacheck.dtos.AnuncioxUsuarioDTO;
+import pe.edu.upc.dermacheck.dtos.IngresosxAnuncioDTO;
 import pe.edu.upc.dermacheck.entities.Anuncio;
 import pe.edu.upc.dermacheck.serviceinterfaces.IAnunciosService;
 
@@ -58,6 +59,20 @@ public class AnuncioController {
             AnuncioxUsuarioDTO dto=new AnuncioxUsuarioDTO();
             dto.setNombres(columna[0]);
             dto.setCount(Integer.parseInt(columna[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+
+    @GetMapping("/IngresosPorAnuncio")
+    public List<IngresosxAnuncioDTO> obtenerIngresosPorAnuncio() {
+        List<String[]> lista = anunciosService.IngresosPorAnuncio();
+        List<IngresosxAnuncioDTO> listaDTO = new ArrayList<>();
+
+        for (String[] columna : lista) {
+            IngresosxAnuncioDTO dto = new IngresosxAnuncioDTO();
+            dto.setNombres (columna[0]);
+            dto.setIngresos(Double.parseDouble(columna[1]));
             listaDTO.add(dto);
         }
         return listaDTO;

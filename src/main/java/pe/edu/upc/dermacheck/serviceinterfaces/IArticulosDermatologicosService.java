@@ -10,4 +10,5 @@ public interface IArticulosDermatologicosService {
     public  void update(ArticulosDermatologicos articulosDermatologicos);
     public List<ArticulosDermatologicos> buscar (String nombre);
     public void delete(int id);
+    public List<String[]> RevistasPorUsuario();
 }
