@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.RecuperacionDTO;
+import pe.edu.upc.dermacheck.dtos.RecuperacionesxUsuarioDTO;
 import pe.edu.upc.dermacheck.entities.Recuperacion;
 import pe.edu.upc.dermacheck.serviceinterfaces.IRecuperacionService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
@@ -44,5 +46,18 @@ public class RecuperacionController {
     public void eliminar(@PathVariable("id") Integer id){
 
         rS.delete(id);
+    }
+
+    @GetMapping ("/RecuperacionesxUsuario")
+    public List<RecuperacionesxUsuarioDTO> contarRecuperacionesPorUsuario() {
+        List<String[]> lista = rS.RecuperacionesPorUsuario();
+        List<RecuperacionesxUsuarioDTO> listaDTO = new ArrayList<>();
+        for (String[] columna : lista) {
+            RecuperacionesxUsuarioDTO dto = new RecuperacionesxUsuarioDTO();
+            dto.setNombre(columna[0]);
+            dto.setCount(Integer.parseInt(columna[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 }

@@ -10,4 +10,5 @@ public interface IRecuperacionService {
     public void insert(Recuperacion recuperacion);
     public  void update(Recuperacion recuperacion);
     public void delete(int id);
+    public List<String[]> RecuperacionesPorUsuario();
 }
