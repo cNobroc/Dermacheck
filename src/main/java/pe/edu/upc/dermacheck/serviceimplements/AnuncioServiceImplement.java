@@ -38,4 +38,6 @@ public class AnuncioServiceImplement implements IAnunciosService {
     public List<String[]> CantidadAnunciosPorUsuario() {
         return anuncioRepository.AnunciosXUsuario();
     }
+
+    public List<String[]> IngresosPorAnuncio() { return anuncioRepository.IngresosPorAnuncio(); }
 }

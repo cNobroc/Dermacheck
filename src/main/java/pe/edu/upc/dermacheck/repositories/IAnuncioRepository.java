@@ -15,4 +15,9 @@ public interface IAnuncioRepository extends JpaRepository <Anuncio, Integer> {
             " ON u.id_usuario = u.id_usuario \n" +
             " GROUP BY u.nombres", nativeQuery = true)
     public List<String[]> AnunciosXUsuario();
+
+    @Query(value = "SELECT CAST(a.idAnuncio AS CHAR), a.descripcion, CAST(a.IngresosPorAnuncioSoles AS CHAR) " +
+            "FROM Anuncio a", nativeQuery = true)
+    public List<String[]> IngresosPorAnuncio();
+
 }
