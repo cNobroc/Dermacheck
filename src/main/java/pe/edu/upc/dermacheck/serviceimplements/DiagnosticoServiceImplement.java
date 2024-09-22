@@ -44,5 +44,10 @@ public class DiagnosticoServiceImplement implements IDiagnosticoService {
         return diagnosticoRepository.buscarDiagnosticosConPuntuacionMaximaPorUsuario();
     }
 
+    @Override
+    public Double obtenerPromedioPuntuacionPorCentroMedico(int idCentroMedico) {
+        return diagnosticoRepository.obtenerPromedioPuntuacionPorCentroMedico(idCentroMedico);
+    }
+
 
 }

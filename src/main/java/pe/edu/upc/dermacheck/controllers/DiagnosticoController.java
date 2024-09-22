@@ -59,6 +59,12 @@ public class DiagnosticoController {
     public List<Diagnostico> diagnosticosConMaximaPuntuacion() {
         return diagnosticoService.listarDiagnosticosConPuntuacionMaximaPorUsuario();
     }
+
+    @GetMapping("/promedio-puntuacion/{idCentroMedico}")
+    public Double obtenerPromedioPuntuacionPorCentroMedico(@PathVariable("idCentroMedico") int idCentroMedico) {
+        return diagnosticoService.obtenerPromedioPuntuacionPorCentroMedico(idCentroMedico);
+    }
+
 }
 
 

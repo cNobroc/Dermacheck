@@ -9,4 +9,6 @@ public interface ICentroMedicosService {
     public void insert(CentrosMedicos centrosMedicos);
     public  void update(CentrosMedicos centrosMedicos);
     public void delete(int id);
+    public List<String> obtenerCentrosCantidadDiagnosticos(int cantidad);
+
 }

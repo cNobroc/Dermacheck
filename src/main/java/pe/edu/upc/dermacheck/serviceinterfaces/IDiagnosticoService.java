@@ -17,4 +17,7 @@ public interface IDiagnosticoService {
     public List<Diagnostico> buscarPorFecha(LocalDate fechaInicio, LocalDate fechaFin);
 
     public List<Diagnostico> listarDiagnosticosConPuntuacionMaximaPorUsuario();
+
+    public Double obtenerPromedioPuntuacionPorCentroMedico(int idCentroMedico);
+
 }

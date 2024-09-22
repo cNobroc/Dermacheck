@@ -17,4 +17,10 @@ public interface IDiagnosticoRepository extends JpaRepository<Diagnostico, Integ
     @Query("SELECT d FROM Diagnostico d WHERE d.puntuacion = (" +
             "SELECT MAX(d2.puntuacion) FROM Diagnostico d2 WHERE d2.usuario.idUsuario = d.usuario.idUsuario)")
     List<Diagnostico> buscarDiagnosticosConPuntuacionMaximaPorUsuario();
+
+    @Query("SELECT AVG(d.puntuacion) FROM Diagnostico d WHERE d.centrosMedicos.idCentroMedico = :idCentroMedico")
+    Double obtenerPromedioPuntuacionPorCentroMedico(@Param("idCentroMedico") int idCentroMedico);
+
+
+
 }

@@ -33,4 +33,11 @@ public class CentrosMedicosImplement implements ICentroMedicosService{
     public void delete(int id) {
     CR.deleteById(id);
     }
+
+    @Override
+    public List<String> obtenerCentrosCantidadDiagnosticos(int cantidad) {
+        return CR.obtenerCentrosCantidadDiagnosticos(cantidad);
+    }
+
+
 }

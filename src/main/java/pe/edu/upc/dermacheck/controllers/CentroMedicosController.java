@@ -41,8 +41,13 @@ public class CentroMedicosController {
     }
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
-
         cS.delete(id);
     }
+
+    @GetMapping("/diagnosticos")
+    public List<String> obtenerCentrosConMasDiagnosticos(@RequestParam("cantidad") int cantidad) {
+        return cS.obtenerCentrosCantidadDiagnosticos(cantidad);
+    }
+
 
 }

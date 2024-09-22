@@ -28,4 +28,6 @@ public interface IDiagnosticoxTratamientoRepository extends JpaRepository<Diagno
             "JOIN tratamiento t ON dt.id_tratamiento = t.id_tratamiento\n" +
             "WHERE t.estado = false", nativeQuery = true)
     public List<String[]> estadodeDiagnosticoTratimientoFALSE();
+
+
 }
