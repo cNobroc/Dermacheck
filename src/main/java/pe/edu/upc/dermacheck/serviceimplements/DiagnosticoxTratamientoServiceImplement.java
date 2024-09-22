@@ -37,4 +37,14 @@ public class DiagnosticoxTratamientoServiceImplement implements IDiagnosticoxTra
     public List<String[]> MaterialesMedicinalesxUsuario() {
         return diagnosticoxTratamientoRepository.listarMaterialesMedicinalesPorUsuario();
     }
+
+    @Override
+    public List<String[]> EstadodeDiagnosticoTratimientoTRUE() {
+        return diagnosticoxTratamientoRepository.estadodeDiagnosticoTratimientoTRUE();
+    }
+
+    @Override
+    public List<String[]> EstadodeDiagnosticoTratimientoFALSE() {
+        return diagnosticoxTratamientoRepository.estadodeDiagnosticoTratimientoFALSE();
+    }
 }
