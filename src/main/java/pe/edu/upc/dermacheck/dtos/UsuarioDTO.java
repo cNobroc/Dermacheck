@@ -1,8 +1,6 @@
 package pe.edu.upc.dermacheck.dtos;
 
 
-import pe.edu.upc.dermacheck.entities.Rol;
-
 public class UsuarioDTO {
     private int idUsuario;
 
@@ -13,7 +11,6 @@ public class UsuarioDTO {
     private String sitioWeb;
     private int telefono;
     private String nombreEmpresa;
-    private Rol rol;
     private String username;
     private String password;
     private Boolean enabled;
@@ -81,14 +78,6 @@ public class UsuarioDTO {
 
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
     }
 
     public String getUsername() {
