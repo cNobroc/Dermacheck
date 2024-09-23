@@ -4,13 +4,13 @@ public class UsuarioDiagnosticoDTO {
     private UsuarioDTO usuario;
     private Long cantidadDiagnosticos;
 
-    // Constructor
+
     public UsuarioDiagnosticoDTO(UsuarioDTO usuario, Long cantidadDiagnosticos) {
         this.usuario = usuario;
         this.cantidadDiagnosticos = cantidadDiagnosticos;
     }
 
-    // Getters y Setters
+
     public UsuarioDTO getUsuario() {
         return usuario;
     }

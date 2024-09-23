@@ -7,10 +7,12 @@ import pe.edu.upc.dermacheck.repositories.IEnfermedadRepository;
 import pe.edu.upc.dermacheck.serviceinterfaces.IEnfermedadService;
 
 import java.util.List;
+
 @Service
 public class EnfermedadServiceImplement implements IEnfermedadService {
     @Autowired
     private IEnfermedadRepository eR;
+
     @Override
     public List<Enfermedad> list() {
         return eR.findAll();

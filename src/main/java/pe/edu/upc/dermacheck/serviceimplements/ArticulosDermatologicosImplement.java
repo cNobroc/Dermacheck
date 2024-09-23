@@ -25,18 +25,20 @@ public class ArticulosDermatologicosImplement implements IArticulosDermatologico
 
     @Override
     public void update(ArticulosDermatologicos articulosDermatologicos) {
-    aS.save(articulosDermatologicos);
+        aS.save(articulosDermatologicos);
     }
 
     @Override
     public List<ArticulosDermatologicos> buscar(String nombre) {
-       return aS.buscar(nombre);
+        return aS.buscar(nombre);
     }
 
     @Override
     public void delete(int id) {
-    aS.deleteById(id);
+        aS.deleteById(id);
     }
 
-    public List<String[]> RevistasPorUsuario() {return  aS.RevistasPorUsuario(); }
+    public List<String[]> RevistasPorUsuario() {
+        return aS.RevistasPorUsuario();
+    }
 }

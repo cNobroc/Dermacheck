@@ -6,10 +6,16 @@ import java.util.List;
 
 public interface IDiagnosticoxTratamientoService {
     public List<DiagnosticoxTratamiento> list();
+
     public void insert(DiagnosticoxTratamiento diagnosticoxTratamiento);
-    public  void update(DiagnosticoxTratamiento diagnosticoxTratamiento );
+
+    public void update(DiagnosticoxTratamiento diagnosticoxTratamiento);
+
     public void delete(int id);
+
     List<String[]> MaterialesMedicinalesxUsuario();
+
     List<String[]> EstadodeDiagnosticoTratimientoTRUE();
+
     List<String[]> EstadodeDiagnosticoTratimientoFALSE();
 }

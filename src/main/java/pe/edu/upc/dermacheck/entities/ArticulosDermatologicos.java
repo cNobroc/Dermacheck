@@ -1,6 +1,5 @@
 package pe.edu.upc.dermacheck.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity

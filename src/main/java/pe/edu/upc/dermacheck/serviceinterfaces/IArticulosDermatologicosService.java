@@ -6,9 +6,14 @@ import java.util.List;
 
 public interface IArticulosDermatologicosService {
     public List<ArticulosDermatologicos> list();
+
     public void insert(ArticulosDermatologicos articulosDermatologicos);
-    public  void update(ArticulosDermatologicos articulosDermatologicos);
-    public List<ArticulosDermatologicos> buscar (String nombre);
+
+    public void update(ArticulosDermatologicos articulosDermatologicos);
+
+    public List<ArticulosDermatologicos> buscar(String nombre);
+
     public void delete(int id);
+
     public List<String[]> RevistasPorUsuario();
 }

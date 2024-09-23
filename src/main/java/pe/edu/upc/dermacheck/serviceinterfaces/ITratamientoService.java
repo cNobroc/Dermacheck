@@ -7,9 +7,13 @@ import java.util.List;
 
 public interface ITratamientoService {
     List<Tratamiento> list();
+
     public void insert(Tratamiento tratamiento);
+
     public void update(Tratamiento tratamiento);
+
     public void delete(int id);
+
     List<Tratamiento> buscarPorFechaInicio(LocalDate fecha);
 }
 

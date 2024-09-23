@@ -6,16 +6,15 @@ import pe.edu.upc.dermacheck.entities.CentrosMedicos;
 import pe.edu.upc.dermacheck.repositories.ICentrosMedicosRepository;
 import pe.edu.upc.dermacheck.serviceinterfaces.ICentroMedicosService;
 
-
 import java.util.List;
 
 @Service
-public class CentrosMedicosImplement implements ICentroMedicosService{
+public class CentrosMedicosImplement implements ICentroMedicosService {
     @Autowired
     private ICentrosMedicosRepository CR;
 
     @Override
-    public List<CentrosMedicos> list(){
+    public List<CentrosMedicos> list() {
         return CR.findAll();
     }
 
@@ -26,12 +25,12 @@ public class CentrosMedicosImplement implements ICentroMedicosService{
 
     @Override
     public void update(CentrosMedicos centrosMedicos) {
-    CR.save(centrosMedicos);
+        CR.save(centrosMedicos);
     }
 
     @Override
     public void delete(int id) {
-    CR.deleteById(id);
+        CR.deleteById(id);
     }
 
     @Override

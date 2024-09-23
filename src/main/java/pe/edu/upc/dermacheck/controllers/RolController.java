@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.RolDTO;
-import pe.edu.upc.dermacheck.dtos.UsuarioDTO;
 import pe.edu.upc.dermacheck.entities.Rol;
-import pe.edu.upc.dermacheck.entities.Usuario;
 import pe.edu.upc.dermacheck.serviceinterfaces.IRolService;
 
 import java.util.List;
@@ -32,16 +30,17 @@ public class RolController {
 
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void registrar (@RequestBody RolDTO rolDTO) {
+    public void registrar(@RequestBody RolDTO rolDTO) {
         ModelMapper m = new ModelMapper();
         Rol rol = m.map(rolDTO, Rol.class);
         rolService.insert(rol);
     }
+
     @PatchMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void modificar(@RequestBody RolDTO dto){
-        ModelMapper m=new ModelMapper();
-        Rol ro=m.map(dto,Rol.class);
+    public void modificar(@RequestBody RolDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Rol ro = m.map(dto, Rol.class);
         rolService.update(ro);
     }
 

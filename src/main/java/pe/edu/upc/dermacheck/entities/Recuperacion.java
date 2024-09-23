@@ -1,6 +1,5 @@
 package pe.edu.upc.dermacheck.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -18,7 +17,7 @@ public class Recuperacion {
     @Column(name = "codigoRecuperacion", nullable = false, length = 6)
     private int codigoRecuperacion;
 
-    @Column(name = "estadoRecuperacion",nullable = false)
+    @Column(name = "estadoRecuperacion", nullable = false)
     private boolean estadoRecuperacion;
 
     @Column(name = "fechaExpiracion", nullable = false)
@@ -26,7 +25,7 @@ public class Recuperacion {
 
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario" ,nullable = false)
+    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
     public Recuperacion() {

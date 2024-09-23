@@ -31,7 +31,7 @@ public class TratamientoController {
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('Especialista','ADMIN')")
-    public void registrar (@RequestBody TratamientoDTO tratamientoDTO) {
+    public void registrar(@RequestBody TratamientoDTO tratamientoDTO) {
         ModelMapper m = new ModelMapper();
         Tratamiento tratamiento = m.map(tratamientoDTO, Tratamiento.class);
         tratamientoService.insert(tratamiento);
@@ -47,7 +47,7 @@ public class TratamientoController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public void eliminar (@PathVariable("id") Integer id) {
+    public void eliminar(@PathVariable("id") Integer id) {
         tratamientoService.delete(id);
     }
 
