@@ -2,14 +2,7 @@ package pe.edu.upc.dermacheck.dtos;
 
 public class RevistasxUsuarioDTO {
     private String nombre;
-    private int cuenta;
-
-    public RevistasxUsuarioDTO() {}
-
-    public RevistasxUsuarioDTO(String nombre, int cuenta) {
-        this.nombre = nombre;
-        this.cuenta = cuenta;
-    }
+    private int Cantidad;
 
     public String getNombre() {
         return nombre;
@@ -19,11 +12,11 @@ public class RevistasxUsuarioDTO {
         this.nombre = nombre;
     }
 
-    public int getCount() {
-        return cuenta;
+    public int getCantidad() {
+        return Cantidad;
     }
 
-    public void setCount(int cuenta) {
-        this.cuenta = cuenta;
+    public void setCantidad(int cantidad) {
+        Cantidad = cantidad;
     }
 }

@@ -11,9 +11,10 @@ import java.util.List;
 @Repository
 public interface IArticulosDermatologicosRepository extends JpaRepository<ArticulosDermatologicos, Integer> {
     @Query(value = "SELECT u.nombres, COUNT(a)\n" +
-            " FROM ArticulosDermatologicos a JOIN Usuario u \n" +
-            " ON a.id_usuario = u.id_usuario \n" +
-            " GROUP BY u.nombres", nativeQuery = true)
+            "FROM Articulos_Dermatologicos a \n" +
+            "JOIN Usuario u \n" +
+            "ON a.id_usuario = u.id_usuario \n" +
+            "GROUP BY u.nombres;", nativeQuery = true)
     public List<String[]> RevistasPorUsuario();
 
     @Query(" Select aD From ArticulosDermatologicos aD where aD.nombreRevista like %:nombre%")

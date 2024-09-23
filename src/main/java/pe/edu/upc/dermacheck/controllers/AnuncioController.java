@@ -56,6 +56,7 @@ public class AnuncioController {
     }
 
     @GetMapping("/AnunciosxUsuarios")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<AnuncioxUsuarioDTO> contarAnunciosPorUsuario() {
         List<String[]>lista=anunciosService.CantidadAnunciosPorUsuario();
         List<AnuncioxUsuarioDTO>listaDTO=new ArrayList<>();

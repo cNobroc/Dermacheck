@@ -67,7 +67,7 @@ public class ArticulosDermatologicosController {
         List<RevistasxUsuarioDTO> listaDTO = lista.stream().map(columna -> {
             RevistasxUsuarioDTO dto = new RevistasxUsuarioDTO();
             dto.setNombre(columna[0]);
-            dto.setCount(Integer.parseInt(columna[1]));
+            dto.setCantidad(Integer.parseInt(columna[1]));
             return dto;
         }).collect(Collectors.toList());
 
