@@ -68,7 +68,7 @@ public class DiagnosticoController {
 
     @GetMapping("/promedio-puntuacion/{idCentroMedico}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Double obtenerPromedioPuntuacionPorCentroMedico(@PathVariable("idCentroMedico") int idCentroMedico) {
+    public String obtenerPromedioPuntuacionPorCentroMedico(@PathVariable("idCentroMedico") int idCentroMedico) {
         return diagnosticoService.obtenerPromedioPuntuacionPorCentroMedico(idCentroMedico);
     }
 

@@ -33,7 +33,6 @@ public class CentroMedicosDTO {
     }
 
 
-
     public int getTelefono() {
         return telefono;
     }

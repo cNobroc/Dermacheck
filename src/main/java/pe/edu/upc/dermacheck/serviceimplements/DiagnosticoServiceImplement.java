@@ -45,7 +45,7 @@ public class DiagnosticoServiceImplement implements IDiagnosticoService {
     }
 
     @Override
-    public Double obtenerPromedioPuntuacionPorCentroMedico(int idCentroMedico) {
+    public String obtenerPromedioPuntuacionPorCentroMedico(int idCentroMedico) {
         return diagnosticoRepository.obtenerPromedioPuntuacionPorCentroMedico(idCentroMedico);
     }
 

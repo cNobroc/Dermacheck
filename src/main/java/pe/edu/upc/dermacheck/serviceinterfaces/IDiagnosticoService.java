@@ -18,6 +18,6 @@ public interface IDiagnosticoService {
 
     public List<Diagnostico> listarDiagnosticosConPuntuacionMaximaPorUsuario();
 
-    public Double obtenerPromedioPuntuacionPorCentroMedico(int idCentroMedico);
+    public String obtenerPromedioPuntuacionPorCentroMedico(int idCentroMedico);
 
 }
