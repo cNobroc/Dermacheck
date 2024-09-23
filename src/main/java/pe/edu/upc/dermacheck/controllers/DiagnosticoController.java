@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/diagnosticos")
-@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista', 'Usuario')")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 
 public class DiagnosticoController {
     @Autowired
@@ -32,6 +32,7 @@ public class DiagnosticoController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('Usuario','Especialista')")
     public List<DiagnosticoDTO> listar() {
         return diagnosticoService.list().stream().map(diagnostico -> {
             ModelMapper modelMapper = new ModelMapper();

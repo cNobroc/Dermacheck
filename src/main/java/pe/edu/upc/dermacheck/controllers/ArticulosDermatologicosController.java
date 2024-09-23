@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/articulos-dermatologicos")
-@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista')")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 
 public class ArticulosDermatologicosController {
     @Autowired
     private IArticulosDermatologicosService aS;
 
     @GetMapping
-
+    @PreAuthorize("hasAnyAuthority('Usuario','Especialista')")
     public List<ArticulosDermatologicos> listar() {
         return aS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -30,6 +30,7 @@ public class ArticulosDermatologicosController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('Especialista')")
     public void registrar(@RequestBody ArticulosDermatologicosDTO dto) {
         ModelMapper m = new ModelMapper();
         ArticulosDermatologicos ar = m.map(dto, ArticulosDermatologicos.class);

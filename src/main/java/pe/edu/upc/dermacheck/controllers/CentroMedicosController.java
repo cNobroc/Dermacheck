@@ -13,14 +13,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/centros-medicos")
-@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista', 'Usuario')")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 
 public class CentroMedicosController {
     @Autowired
     private ICentroMedicosService cS;
 
     @GetMapping
-
+    @PreAuthorize("hasAnyAuthority('Especialista','Usuario')")
     public List<CentroMedicosDTO> ListarCentrosMedicos() {
         return cS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();

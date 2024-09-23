@@ -13,13 +13,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tratamientos")
-@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista', 'Usuario')")
+@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista')")
 
 public class TratamientoController {
     @Autowired
     private ITratamientoService tratamientoService;
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('Usuario','Especialista')")
     public List<TratamientoDTO> listar() {
         return tratamientoService.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -28,6 +29,7 @@ public class TratamientoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('Especialista')")
     public void registrar (@RequestBody TratamientoDTO tratamientoDTO) {
         ModelMapper m = new ModelMapper();
         Tratamiento tratamiento = m.map(tratamientoDTO, Tratamiento.class);

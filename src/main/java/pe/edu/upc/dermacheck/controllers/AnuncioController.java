@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/anuncios")
-@PreAuthorize("hasAnyAuthority('ADMIN', 'Empresas anunciantes')")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 
 
 
@@ -25,6 +25,7 @@ public class AnuncioController {
     private IAnunciosService anunciosService;
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('Empresas anunciantes')")
     public List<Anuncio> listar() {
         return anunciosService.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -33,6 +34,7 @@ public class AnuncioController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('Empresas anunciantes')")
     public void registrar (@RequestBody AnuncioDTO anuncioDTO) {
         ModelMapper m = new ModelMapper();
         Anuncio anuncio = m.map(anuncioDTO, Anuncio.class);
@@ -40,6 +42,7 @@ public class AnuncioController {
     }
 
     @PatchMapping
+
     public void modificar(@RequestBody AnuncioDTO dto) {
         ModelMapper m = new ModelMapper();
         Anuncio anuncio = m.map(dto, Anuncio.class);
@@ -47,6 +50,7 @@ public class AnuncioController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Empresas anunciantes')")
     public void eliminar (@PathVariable("id") Integer id) {
         anunciosService.delete(id);
     }

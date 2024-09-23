@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/enfermedades")
-@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista')")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 
 public class EnfermedadController {
     @Autowired
@@ -21,6 +21,7 @@ public class EnfermedadController {
     private IEnfermedadService eS;
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('Usuario','Especialista')")
     public List<EnfermedadDTO> listar() {
         return eS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -42,6 +43,7 @@ public class EnfermedadController {
         eS.update(en);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Especialista')")
     public void eliminar(@PathVariable("id") Integer id){
 
         eS.delete(id);

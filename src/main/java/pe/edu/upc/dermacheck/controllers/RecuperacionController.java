@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/recuperaciones")
-@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista', 'Usuario')")
+@PreAuthorize("hasAnyAuthority('ADMIN','Usuarios','Especialista','Empresas anunciantes')")
 
 public class RecuperacionController {
     @Autowired
