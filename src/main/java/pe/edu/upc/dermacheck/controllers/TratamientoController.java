@@ -8,6 +8,7 @@ import pe.edu.upc.dermacheck.dtos.TratamientoDTO;
 import pe.edu.upc.dermacheck.entities.Tratamiento;
 import pe.edu.upc.dermacheck.serviceinterfaces.ITratamientoService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,6 +47,15 @@ public class TratamientoController {
     @DeleteMapping("/{id}")
     public void eliminar (@PathVariable("id") Integer id) {
         tratamientoService.delete(id);
+    }
+
+    @GetMapping("/por-fecha-inicio")
+    public List<TratamientoDTO> buscarPorFechaInicio(@RequestParam("fechaInicio") LocalDate fechaInicio) {
+        List<Tratamiento> tratamientos = tratamientoService.buscarPorFechaInicio(fechaInicio);
+        return tratamientos.stream().map(x -> {
+            ModelMapper modelMapper = new ModelMapper();
+            return modelMapper.map(x, TratamientoDTO.class);
+        }).collect(Collectors.toList());
     }
 
 }

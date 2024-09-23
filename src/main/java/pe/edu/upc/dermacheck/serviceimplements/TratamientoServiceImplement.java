@@ -7,13 +7,13 @@ import pe.edu.upc.dermacheck.entities.Usuario;
 import pe.edu.upc.dermacheck.repositories.ITratamientoRepository;
 import pe.edu.upc.dermacheck.serviceinterfaces.ITratamientoService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class TratamientoServiceImplement implements ITratamientoService {
     @Autowired
     private ITratamientoRepository tratamientoRepository;
-
 
     @Override
     public List<Tratamiento> list() {
@@ -34,4 +34,11 @@ public class TratamientoServiceImplement implements ITratamientoService {
     public void delete(int id) {
         tratamientoRepository.deleteById(id);
     }
+
+    @Override
+    public List<Tratamiento> buscarPorFechaInicio(LocalDate fechaInicio) {
+        return tratamientoRepository.buscarPorFechaInicio(fechaInicio);
+    }
+
+
 }
