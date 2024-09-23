@@ -25,6 +25,7 @@ public class DiagnosticoController {
     private IUsuarioService usuarioService;
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void registrar (@RequestBody DiagnosticoDTO dto) {
         ModelMapper m = new ModelMapper();
         Diagnostico diagnostico = m.map(dto, Diagnostico.class);
@@ -32,7 +33,7 @@ public class DiagnosticoController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista')")
+    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
     public List<DiagnosticoDTO> listar() {
         return diagnosticoService.list().stream().map(diagnostico -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -41,27 +42,32 @@ public class DiagnosticoController {
     }
 
     @PatchMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void modificar(@RequestBody DiagnosticoDTO dto){
         ModelMapper m=new ModelMapper();
         Diagnostico d=m.map(dto,Diagnostico.class);
         diagnosticoService.update(d);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         diagnosticoService.delete(id);
     }
 
     @GetMapping("/fecha")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<Diagnostico> diagnosticosPorFecha(@RequestParam("fechaInicio") LocalDate fechaInicio, @RequestParam("fechaFin") LocalDate fechaFin) {
         return diagnosticoService.buscarPorFecha(fechaInicio, fechaFin);
     }
 
     @GetMapping("/maxima-puntuacion")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<Diagnostico> diagnosticosConMaximaPuntuacion() {
         return diagnosticoService.listarDiagnosticosConPuntuacionMaximaPorUsuario();
     }
 
     @GetMapping("/promedio-puntuacion/{idCentroMedico}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public Double obtenerPromedioPuntuacionPorCentroMedico(@PathVariable("idCentroMedico") int idCentroMedico) {
         return diagnosticoService.obtenerPromedioPuntuacionPorCentroMedico(idCentroMedico);
     }

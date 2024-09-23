@@ -27,6 +27,7 @@ public class DiagnosticoxTratamientoController {
     private IDiagnosticoxTratamientoService diagnosticoxTratamientoService;
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void registrar(@RequestBody DiagnosticoxTratamientoDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
         DiagnosticoxTratamiento diagnosticoxTratamiento = modelMapper.map(dto, DiagnosticoxTratamiento.class);
@@ -34,7 +35,7 @@ public class DiagnosticoxTratamientoController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista')")
+    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
     public List<DiagnosticoxTratamientoDTO> listar() {
         return diagnosticoxTratamientoService.list().stream().map(diagnosticoxTratamiento -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -43,6 +44,7 @@ public class DiagnosticoxTratamientoController {
     }
 
     @PatchMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void modificar(@RequestBody DiagnosticoxTratamientoDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
         DiagnosticoxTratamiento diagnosticoxTratamiento = modelMapper.map(dto, DiagnosticoxTratamiento.class);
@@ -50,11 +52,13 @@ public class DiagnosticoxTratamientoController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id) {
         diagnosticoxTratamientoService.delete(id);
     }
 
     @GetMapping("/MaterialesMedicinalesxUsuario")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<MaterialesMedicinalesxUsuarioDTO> MaterialesMedicinalesxUsuario() {
         List<String[]>lista=diagnosticoxTratamientoService.MaterialesMedicinalesxUsuario();
         List<MaterialesMedicinalesxUsuarioDTO>listaDTO=new ArrayList<>();
@@ -69,6 +73,7 @@ public class DiagnosticoxTratamientoController {
     }
 
     @GetMapping("/EstadodeTratamientoIndicandoDiagnisticoyUsuarioTERMINADO")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<EstadoDiagnosticoTrueDTO> EstadodeTratamientoIndicandoDiagnisticoyUsuarioTERMINADO() {
         List<String[]>lista=diagnosticoxTratamientoService.EstadodeDiagnosticoTratimientoTRUE();
         List<EstadoDiagnosticoTrueDTO>listaDTO=new ArrayList<>();
@@ -84,6 +89,7 @@ public class DiagnosticoxTratamientoController {
     }
 
     @GetMapping("/EstadodeTratamientoIndicandoDiagnisticoyUsuarioNOTERMINADO")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<EstadoDiagnosticoFalseDTO> EstadodeTratamientoIndicandoDiagnisticoyUsuarioNOTERMINADO() {
         List<String[]>lista=diagnosticoxTratamientoService.EstadodeDiagnosticoTratimientoFALSE();
         List<EstadoDiagnosticoFalseDTO>listaDTO=new ArrayList<>();

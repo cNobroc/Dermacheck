@@ -21,6 +21,7 @@ public class UsuarioController {
     private IUsuarioService usuarioService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> listar() {
         return usuarioService.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -29,6 +30,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/premium")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> listarUsuariosPremium() {
         return usuarioService.listarUsuariosPremium().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -37,13 +39,15 @@ public class UsuarioController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void registrar (@RequestBody UsuarioDTO usuarioDTO) {
         ModelMapper m = new ModelMapper();
         Usuario user = m.map(usuarioDTO, Usuario.class);
         usuarioService.insert(user);
     }
 
-    @GetMapping("/{id}") // Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")// Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
     public UsuarioDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(usuarioService.listId(id), UsuarioDTO.class);
@@ -51,6 +55,7 @@ public class UsuarioController {
     }
 
     @PatchMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario usu = m.map(dto, Usuario.class);
@@ -58,11 +63,13 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar (@PathVariable("id") Integer id) {
         usuarioService.delete(id);
     }
 
     @GetMapping("/CantidadDiagnosticosPorUsuario")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<DiagnosticoXUsuarioDTO> CantidadDiagnosticosPorUsuario() {
         List<String[]>lista=usuarioService.CantidadDiagnosticosPorUsuario();
         List<DiagnosticoXUsuarioDTO>listaDTO=new ArrayList<>();
@@ -75,6 +82,7 @@ public class UsuarioController {
         return listaDTO;
     }
     @GetMapping("/Usuario-Cantidad-Enfermedades")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<EnfermedadesxUsuarioDTO> CantidadEnfermedadesPorUsuario() {
         List<String[]>lista=usuarioService.CantidadEnfermedadesPorUsuario();
         List<EnfermedadesxUsuarioDTO>listaDTO=new ArrayList<>();
@@ -87,6 +95,7 @@ public class UsuarioController {
         return listaDTO;
     }
     @GetMapping("/Usuario-Cantidad-Creditos")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioxAnuncioCreditosDTO> CantidadCreditosPorUsuario() {
         List<String[]>lista=usuarioService.CantidadCreditosPorUsuario();
         List<UsuarioxAnuncioCreditosDTO>listaDTO=new ArrayList<>();

@@ -22,6 +22,7 @@ public class RolController {
     private IRolService rolService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<RolDTO> listar() {
         return rolService.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -30,12 +31,14 @@ public class RolController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void registrar (@RequestBody RolDTO rolDTO) {
         ModelMapper m = new ModelMapper();
         Rol rol = m.map(rolDTO, Rol.class);
         rolService.insert(rol);
     }
     @PatchMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody RolDTO dto){
         ModelMapper m=new ModelMapper();
         Rol ro=m.map(dto,Rol.class);

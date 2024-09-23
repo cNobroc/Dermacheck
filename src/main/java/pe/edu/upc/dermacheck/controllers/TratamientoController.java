@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tratamientos")
-@PreAuthorize("hasAnyAuthority('ADMIN', 'Especialista')")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 
 public class TratamientoController {
     @Autowired
     private ITratamientoService tratamientoService;
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista')")
+    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
     public List<TratamientoDTO> listar() {
         return tratamientoService.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -30,7 +30,7 @@ public class TratamientoController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('Especialista')")
+    @PreAuthorize("hasAnyAuthority('Especialista','ADMIN')")
     public void registrar (@RequestBody TratamientoDTO tratamientoDTO) {
         ModelMapper m = new ModelMapper();
         Tratamiento tratamiento = m.map(tratamientoDTO, Tratamiento.class);
@@ -38,6 +38,7 @@ public class TratamientoController {
     }
 
     @PatchMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void modificar(@RequestBody TratamientoDTO dto) {
         ModelMapper m = new ModelMapper();
         Tratamiento tratamiento = m.map(dto, Tratamiento.class);
@@ -45,11 +46,13 @@ public class TratamientoController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void eliminar (@PathVariable("id") Integer id) {
         tratamientoService.delete(id);
     }
 
     @GetMapping("/por-fecha-inicio")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<TratamientoDTO> buscarPorFechaInicio(@RequestParam("fechaInicio") LocalDate fechaInicio) {
         List<Tratamiento> tratamientos = tratamientoService.buscarPorFechaInicio(fechaInicio);
         return tratamientos.stream().map(x -> {

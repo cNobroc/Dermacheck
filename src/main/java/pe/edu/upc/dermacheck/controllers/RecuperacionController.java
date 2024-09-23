@@ -22,6 +22,7 @@ public class RecuperacionController {
     private IRecuperacionService rS;
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN','Usuarios','Especialista','Empresas anunciantes')")
     public List<RecuperacionDTO> listar() {
         return rS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -30,6 +31,7 @@ public class RecuperacionController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN','Usuarios','Especialista','Empresas anunciantes')")
     public void registrar(@RequestBody RecuperacionDTO dto) {
         ModelMapper m = new ModelMapper();
         Recuperacion re = m.map(dto, Recuperacion.class);
@@ -37,18 +39,21 @@ public class RecuperacionController {
     }
 
     @PatchMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void modificar(@RequestBody RecuperacionDTO dto){
         ModelMapper m=new ModelMapper();
         Recuperacion re=m.map(dto,Recuperacion.class);
         rS.update(re);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
 
         rS.delete(id);
     }
 
     @GetMapping ("/RecuperacionesxUsuario")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<RecuperacionesxUsuarioDTO> contarRecuperacionesPorUsuario() {
         List<String[]> lista = rS.RecuperacionesPorUsuario();
         List<RecuperacionesxUsuarioDTO> listaDTO = new ArrayList<>();

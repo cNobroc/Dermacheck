@@ -21,7 +21,7 @@ public class ArticulosDermatologicosController {
     private IArticulosDermatologicosService aS;
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista')")
+    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
     public List<ArticulosDermatologicos> listar() {
         return aS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -30,7 +30,7 @@ public class ArticulosDermatologicosController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('Especialista')")
+    @PreAuthorize("hasAnyAuthority('Especialista','ADMIN')")
     public void registrar(@RequestBody ArticulosDermatologicosDTO dto) {
         ModelMapper m = new ModelMapper();
         ArticulosDermatologicos ar = m.map(dto, ArticulosDermatologicos.class);
@@ -38,17 +38,20 @@ public class ArticulosDermatologicosController {
     }
 
     @PatchMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void modificar(@RequestBody ArticulosDermatologicosDTO dto){
         ModelMapper m=new ModelMapper();
         ArticulosDermatologicos ar=m.map(dto,ArticulosDermatologicos.class);
         aS.update(ar);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
 
         aS.delete(id);
     }
     @GetMapping("/busquedas")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<ArticulosDermatologicosDTO> buscar (@RequestParam String nombre){
         return aS.buscar(nombre).stream().map(x->{
             ModelMapper m=new ModelMapper();
@@ -57,6 +60,7 @@ public class ArticulosDermatologicosController {
     }
 
     @GetMapping("/RevistasPorUsuario")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<RevistasxUsuarioDTO> contarRevistasPorUsuario() {
         List<String[]> lista = aS.RevistasPorUsuario();
 

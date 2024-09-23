@@ -21,7 +21,7 @@ public class EnfermedadController {
     private IEnfermedadService eS;
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista')")
+    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
     public List<EnfermedadDTO> listar() {
         return eS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -30,6 +30,7 @@ public class EnfermedadController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void registrar(@RequestBody EnfermedadDTO dto) {
         ModelMapper m = new ModelMapper();
         Enfermedad en = m.map(dto, Enfermedad.class);
@@ -37,13 +38,14 @@ public class EnfermedadController {
     }
 
     @PatchMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void modificar(@RequestBody EnfermedadDTO dto){
         ModelMapper m=new ModelMapper();
         Enfermedad en=m.map(dto,Enfermedad.class);
         eS.update(en);
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('Especialista')")
+    @PreAuthorize("hasAnyAuthority('Especialista','ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
 
         eS.delete(id);
