@@ -16,4 +16,7 @@ public interface IArticulosDermatologicosService {
     public void delete(int id);
 
     public List<String[]> RevistasPorUsuario();
+
+    public ArticulosDermatologicos listId(int id);
+
 }

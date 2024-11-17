@@ -25,7 +25,7 @@ public class DiagnosticoController {
     private IUsuarioService usuarioService;
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void registrar (@RequestBody DiagnosticoDTO dto) {
         ModelMapper m = new ModelMapper();
         Diagnostico diagnostico = m.map(dto, Diagnostico.class);
@@ -33,7 +33,7 @@ public class DiagnosticoController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
     public List<DiagnosticoDTO> listar() {
         return diagnosticoService.list().stream().map(diagnostico -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -70,6 +70,15 @@ public class DiagnosticoController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String obtenerPromedioPuntuacionPorCentroMedico(@PathVariable("idCentroMedico") int idCentroMedico) {
         return diagnosticoService.obtenerPromedioPuntuacionPorCentroMedico(idCentroMedico);
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
+// Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
+    public DiagnosticoDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        DiagnosticoDTO dto = m.map(diagnosticoService.listId(id), DiagnosticoDTO.class);
+        return dto;
     }
 
 }

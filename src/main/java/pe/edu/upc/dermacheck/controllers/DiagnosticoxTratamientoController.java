@@ -35,7 +35,7 @@ public class DiagnosticoxTratamientoController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
     public List<DiagnosticoxTratamientoDTO> listar() {
         return diagnosticoxTratamientoService.list().stream().map(diagnosticoxTratamiento -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -81,8 +81,7 @@ public class DiagnosticoxTratamientoController {
             EstadoDiagnosticoTrueDTO dto=new EstadoDiagnosticoTrueDTO();
             dto.setIdDiagnostico(Integer.parseInt(columna[0]));
             dto.setFechaDiagnostico(LocalDate.parse(columna[1]));
-            dto.setHoraDiagnostico(LocalTime.parse(columna[2]));
-            dto.setIdUsuario(Integer.parseInt(columna[3]));
+            dto.setIdUsuario(Integer.parseInt(columna[2]));
             listaDTO.add(dto);
         }
         return listaDTO;
@@ -97,11 +96,19 @@ public class DiagnosticoxTratamientoController {
             EstadoDiagnosticoFalseDTO dto=new EstadoDiagnosticoFalseDTO();
             dto.setIdDiagnostico(Integer.parseInt(columna[0]));
             dto.setFechaDiagnostico(LocalDate.parse(columna[1]));
-            dto.setHoraDiagnostico(LocalTime.parse(columna[2]));
-            dto.setIdUsuario(Integer.parseInt(columna[3]));
+            dto.setIdUsuario(Integer.parseInt(columna[2]));
             listaDTO.add(dto);
         }
         return listaDTO;
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
+// Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
+    public DiagnosticoxTratamientoDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        DiagnosticoxTratamientoDTO dto = m.map(diagnosticoxTratamientoService.listId(id), DiagnosticoxTratamientoDTO.class);
+        return dto;
     }
 
 }

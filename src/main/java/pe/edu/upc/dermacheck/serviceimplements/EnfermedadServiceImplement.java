@@ -23,6 +23,10 @@ public class EnfermedadServiceImplement implements IEnfermedadService {
         eR.save(enfermedad);
     }
 
+    @Override
+    public Enfermedad listId(int id) {
+        return eR.findById(id).orElse(new Enfermedad());
+    }
 
     @Override
     public void update(Enfermedad enfermedad) {

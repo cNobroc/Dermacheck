@@ -22,7 +22,7 @@ public class RecuperacionController {
     private IRecuperacionService rS;
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN','Usuarios','Especialista','Empresas anunciantes')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','Cliente','Especialista','Empresas anunciantes')")
     public List<RecuperacionDTO> listar() {
         return rS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -31,7 +31,7 @@ public class RecuperacionController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN','Usuarios','Especialista','Empresas anunciantes')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','Cliente','Especialista','Empresas anunciantes')")
     public void registrar(@RequestBody RecuperacionDTO dto) {
         ModelMapper m = new ModelMapper();
         Recuperacion re = m.map(dto, Recuperacion.class);
@@ -64,5 +64,14 @@ public class RecuperacionController {
             listaDTO.add(dto);
         }
         return listaDTO;
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','Cliente','Especialista','Empresas anunciantes')")
+// Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
+    public RecuperacionDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        RecuperacionDTO dto = m.map(rS.listId(id), RecuperacionDTO.class);
+        return dto;
     }
 }

@@ -9,7 +9,6 @@ public class EstadoDiagnosticoTrueDTO {
 
     private LocalDate fechaDiagnostico;
 
-    private LocalTime horaDiagnostico;
 
     private int IdUsuario;
 
@@ -27,14 +26,6 @@ public class EstadoDiagnosticoTrueDTO {
 
     public void setFechaDiagnostico(LocalDate fechaDiagnostico) {
         this.fechaDiagnostico = fechaDiagnostico;
-    }
-
-    public LocalTime getHoraDiagnostico() {
-        return horaDiagnostico;
-    }
-
-    public void setHoraDiagnostico(LocalTime horaDiagnostico) {
-        this.horaDiagnostico = horaDiagnostico;
     }
 
     public int getIdUsuario() {

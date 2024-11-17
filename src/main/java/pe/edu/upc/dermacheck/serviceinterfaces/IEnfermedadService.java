@@ -13,4 +13,7 @@ public interface IEnfermedadService {
 
     public void delete(int id);
 
+    public Enfermedad listId(int id);
+
+
 }

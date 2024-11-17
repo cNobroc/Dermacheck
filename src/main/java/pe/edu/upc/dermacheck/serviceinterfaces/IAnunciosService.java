@@ -16,4 +16,7 @@ public interface IAnunciosService {
     public List<String[]> CantidadAnunciosPorUsuario();
 
     public List<String[]> IngresosPorAnuncio();
+
+    public Anuncio listId(int id);
+
 }

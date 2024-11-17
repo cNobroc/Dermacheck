@@ -19,7 +19,6 @@ import pe.edu.upc.dermacheck.serviceimplements.JWTUserDetailService;
 @RestController
 @CrossOrigin
 public class JWTAuthenticationController {
-
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
@@ -43,6 +42,5 @@ public class JWTAuthenticationController {
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
-
     }
 }

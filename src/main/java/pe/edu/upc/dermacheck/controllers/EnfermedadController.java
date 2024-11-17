@@ -21,7 +21,7 @@ public class EnfermedadController {
     private IEnfermedadService eS;
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
     public List<EnfermedadDTO> listar() {
         return eS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class EnfermedadController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('Especialista','ADMIN')")
     public void registrar(@RequestBody EnfermedadDTO dto) {
         ModelMapper m = new ModelMapper();
         Enfermedad en = m.map(dto, Enfermedad.class);
@@ -47,7 +47,15 @@ public class EnfermedadController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('Especialista','ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
-
         eS.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
+// Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
+    public EnfermedadDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        EnfermedadDTO dto = m.map(eS.listId(id), EnfermedadDTO.class);
+        return dto;
     }
 }

@@ -16,16 +16,11 @@ public class Diagnostico {
     @Column(name = "fechaDiagnostico", nullable = false)
     private LocalDate fechaDiagnostico;
 
-    @Column(name = "horaDiagnostico", nullable = false)
-    private LocalTime horaDiagnostico;
-
-    @Column(name = "imagenDiagnostico", nullable = false)
-    private byte[] imagenDiagnostico;
 
     @Column(name = "puntuacion", nullable = false)
     private int puntuacion;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "idEnfermedad", nullable = false)
     private Enfermedad enfermedad;
@@ -43,11 +38,9 @@ public class Diagnostico {
     public Diagnostico() {
     }
 
-    public Diagnostico(int idDiagnostico, LocalTime horaDiagnostico, LocalDate fechaDiagnostico, byte[] imagenDiagnostico, int puntuacion, Usuario usuario, CentrosMedicos centrosMedicos, Enfermedad enfermedad) {
+    public Diagnostico(int idDiagnostico, LocalDate fechaDiagnostico,  int puntuacion, Usuario usuario, CentrosMedicos centrosMedicos, Enfermedad enfermedad) {
         this.idDiagnostico = idDiagnostico;
-        this.horaDiagnostico = horaDiagnostico;
         this.fechaDiagnostico = fechaDiagnostico;
-        this.imagenDiagnostico = imagenDiagnostico;
         this.puntuacion = puntuacion;
         this.usuario = usuario;
         this.centrosMedicos = centrosMedicos;
@@ -70,21 +63,6 @@ public class Diagnostico {
         this.fechaDiagnostico = fechaDiagnostico;
     }
 
-    public LocalTime getHoraDiagnostico() {
-        return horaDiagnostico;
-    }
-
-    public void setHoraDiagnostico(LocalTime horaDiagnostico) {
-        this.horaDiagnostico = horaDiagnostico;
-    }
-
-    public byte[] getImagenDiagnostico() {
-        return imagenDiagnostico;
-    }
-
-    public void setImagenDiagnostico(byte[] imagenDiagnostico) {
-        this.imagenDiagnostico = imagenDiagnostico;
-    }
 
     public int getPuntuacion() {
         return puntuacion;

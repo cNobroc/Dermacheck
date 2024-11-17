@@ -3,6 +3,7 @@ package pe.edu.upc.dermacheck.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.dermacheck.dtos.DiagnosticoXUsuarioDTO;
 import pe.edu.upc.dermacheck.dtos.EnfermedadesxUsuarioDTO;
@@ -17,11 +18,17 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
-@PreAuthorize("hasAuthority('ADMIN')")
-
 public class UsuarioController {
+
     @Autowired
     private IUsuarioService usuarioService;
+
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -42,16 +49,14 @@ public class UsuarioController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void registrar(@RequestBody UsuarioDTO usuarioDTO) {
         ModelMapper m = new ModelMapper();
         Usuario user = m.map(usuarioDTO, Usuario.class);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         usuarioService.insert(user);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-// Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
     public UsuarioDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(usuarioService.listId(id), UsuarioDTO.class);
@@ -114,5 +119,10 @@ public class UsuarioController {
         return listaDTO;
     }
 
-}
+    @GetMapping("/exists/{username}")
+    public boolean checkUsernameExists(@PathVariable String username) {
+        Usuario usuario = usuarioService.findOneByUsername(username);
+        return usuario != null;
+    }
 
+}

@@ -13,5 +13,7 @@ public interface IRecuperacionService {
 
     public void delete(int id);
 
+    public Recuperacion listId(int id);
+
     public List<String[]> RecuperacionesPorUsuario();
 }

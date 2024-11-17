@@ -19,7 +19,7 @@ public class Anuncio {
     private int creditos;
 
     @Column(name = "IngresosPorAnuncioSoles", nullable = false)
-    private double IngresosPorAnuncioSoles;
+    private double ingresosPorAnuncioSoles;
 
     @Column(name = "duracionMinutos", nullable = false)
     private int duracionMinutos;
@@ -27,19 +27,19 @@ public class Anuncio {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Usuario user;
+    private Usuario usuario;
 
     public Anuncio() {
     }
 
-    public Anuncio(int idAnuncio, String url, String descripcion, int creditos, double ingresosPorAnuncioSoles, int duracionMinutos, Usuario user) {
+    public Anuncio(int idAnuncio, String url, String descripcion, int creditos, double ingresosPorAnuncioSoles, int duracionMinutos, Usuario usuario) {
         this.idAnuncio = idAnuncio;
         this.url = url;
         this.descripcion = descripcion;
         this.creditos = creditos;
-        IngresosPorAnuncioSoles = ingresosPorAnuncioSoles;
+        this.ingresosPorAnuncioSoles = ingresosPorAnuncioSoles;
         this.duracionMinutos = duracionMinutos;
-        this.user = user;
+        this.usuario = usuario;
     }
 
     public int getIdAnuncio() {
@@ -75,11 +75,11 @@ public class Anuncio {
     }
 
     public double getIngresosPorAnuncioSoles() {
-        return IngresosPorAnuncioSoles;
+        return ingresosPorAnuncioSoles;
     }
 
     public void setIngresosPorAnuncioSoles(double ingresosPorAnuncioSoles) {
-        IngresosPorAnuncioSoles = ingresosPorAnuncioSoles;
+        this.ingresosPorAnuncioSoles = ingresosPorAnuncioSoles;
     }
 
     public int getDuracionMinutos() {
@@ -90,11 +90,11 @@ public class Anuncio {
         this.duracionMinutos = duracionMinutos;
     }
 
-    public Usuario getUser() {
-        return user;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUser(Usuario user) {
-        this.user = user;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

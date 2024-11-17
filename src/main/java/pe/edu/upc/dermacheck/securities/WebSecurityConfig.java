@@ -61,6 +61,9 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers(antMatcher("/login")).permitAll()
+                        .requestMatchers(antMatcher("/usuarios")).permitAll()
+                        .requestMatchers(antMatcher("/roles")).permitAll()
+                        .requestMatchers(antMatcher("/usuarios/exists/**")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
@@ -74,10 +77,22 @@ public class WebSecurityConfig {
     private static final String[] AUTH_WHITELIST = {
 
             "/api/v1/auth/**",
+            "/v2/api-docs",
+            "/v3/api-docs",
             "/v3/api-docs/**",
-            "/v3/api-docs.yaml",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
             "/swagger-ui/**",
-            "/swagger-ui.html"
+            "/swagger-ui/*",
+            "/webjars/**",
+            "/swagger-ui.html",
+            "/login",
+            "media/**",
+            "/users/**",
+            "/cities/**",
+            "/roles/**"
     };
 
 }

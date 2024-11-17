@@ -15,4 +15,6 @@ public interface ICentroMedicosService {
 
     public List<String> obtenerCentrosCantidadDiagnosticos(int cantidad);
 
+    public CentrosMedicos listId(int id);
+
 }

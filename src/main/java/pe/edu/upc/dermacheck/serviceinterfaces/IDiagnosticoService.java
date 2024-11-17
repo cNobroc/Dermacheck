@@ -20,4 +20,6 @@ public interface IDiagnosticoService {
 
     public String obtenerPromedioPuntuacionPorCentroMedico(int idCentroMedico);
 
+    public Diagnostico listId(int id);
+
 }

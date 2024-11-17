@@ -10,8 +10,6 @@ import java.time.LocalTime;
 public class DiagnosticoDTO {
     private int idDiagnostico;
     private LocalDate fechaDiagnostico;
-    private LocalTime horaDiagnostico;
-    private byte[] imagenDiagnostico;
     private int puntuacion;
     private Enfermedad enfermedad;
     private Usuario usuario;
@@ -31,22 +29,6 @@ public class DiagnosticoDTO {
 
     public void setFechaDiagnostico(LocalDate fechaDiagnostico) {
         this.fechaDiagnostico = fechaDiagnostico;
-    }
-
-    public LocalTime getHoraDiagnostico() {
-        return horaDiagnostico;
-    }
-
-    public void setHoraDiagnostico(LocalTime horaDiagnostico) {
-        this.horaDiagnostico = horaDiagnostico;
-    }
-
-    public byte[] getImagenDiagnostico() {
-        return imagenDiagnostico;
-    }
-
-    public void setImagenDiagnostico(byte[] imagenDiagnostico) {
-        this.imagenDiagnostico = imagenDiagnostico;
     }
 
     public int getPuntuacion() {

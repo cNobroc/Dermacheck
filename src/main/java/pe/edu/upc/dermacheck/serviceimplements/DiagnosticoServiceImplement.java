@@ -49,5 +49,10 @@ public class DiagnosticoServiceImplement implements IDiagnosticoService {
         return diagnosticoRepository.obtenerPromedioPuntuacionPorCentroMedico(idCentroMedico);
     }
 
+    @Override
+    public Diagnostico listId(int id) {
+        return diagnosticoRepository.findById(id).orElse(new Diagnostico());
+    }
+
 
 }

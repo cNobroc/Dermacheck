@@ -23,5 +23,6 @@ public interface IUsuarioService {
 
     public void delete(int id);
 
+    public Usuario findOneByUsername(String username);
 
 }

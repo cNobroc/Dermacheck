@@ -15,10 +15,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/anuncios")
+@RequestMapping("/anuncio")
 @PreAuthorize("hasAnyAuthority('ADMIN')")
-
-
 
 public class AnuncioController {
     @Autowired
@@ -83,4 +81,14 @@ public class AnuncioController {
         }
         return listaDTO;
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Empresas anunciantes','ADMIN')")
+// Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
+    public AnuncioDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        AnuncioDTO dto = m.map(anunciosService.listId(id), AnuncioDTO.class);
+        return dto;
+    }
+
 }

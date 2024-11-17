@@ -21,7 +21,7 @@ public class ArticulosDermatologicosController {
     private IArticulosDermatologicosService aS;
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
     public List<ArticulosDermatologicos> listar() {
         return aS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -72,5 +72,14 @@ public class ArticulosDermatologicosController {
         }).collect(Collectors.toList());
 
         return listaDTO;
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
+// Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
+    public ArticulosDermatologicosDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        ArticulosDermatologicosDTO dto = m.map(aS.listId(id), ArticulosDermatologicosDTO.class);
+        return dto;
     }
 }

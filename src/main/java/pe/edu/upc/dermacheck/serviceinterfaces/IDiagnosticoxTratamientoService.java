@@ -13,6 +13,9 @@ public interface IDiagnosticoxTratamientoService {
 
     public void delete(int id);
 
+    public DiagnosticoxTratamiento listId(int id);
+
+
     List<String[]> MaterialesMedicinalesxUsuario();
 
     List<String[]> EstadodeDiagnosticoTratimientoTRUE();

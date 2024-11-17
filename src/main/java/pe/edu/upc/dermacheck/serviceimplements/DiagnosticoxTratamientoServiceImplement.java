@@ -29,6 +29,11 @@ public class DiagnosticoxTratamientoServiceImplement implements IDiagnosticoxTra
     }
 
     @Override
+    public DiagnosticoxTratamiento listId(int id) {
+        return diagnosticoxTratamientoRepository.findById(id).orElse(new DiagnosticoxTratamiento());
+    }
+
+    @Override
     public void delete(int id) {
         diagnosticoxTratamientoRepository.deleteById(id);
     }

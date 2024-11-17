@@ -9,14 +9,14 @@ public class AnuncioDTO {
     private int creditos;
     private double IngresosPorAnuncioSoles;
     private int duracionMinutos;
-    private Usuario user;
+    private Usuario usuario;
 
     public double getIngresosPorAnuncioSoles() {
         return IngresosPorAnuncioSoles;
     }
 
     public void setIngresosPorAnuncioSoles(double ingresosPorAnuncioSoles) {
-        IngresosPorAnuncioSoles = ingresosPorAnuncioSoles;
+        this.IngresosPorAnuncioSoles = ingresosPorAnuncioSoles;
     }
 
     public int getDuracionMinutos() {
@@ -27,12 +27,12 @@ public class AnuncioDTO {
         this.duracionMinutos = duracionMinutos;
     }
 
-    public Usuario getUser() {
-        return user;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUser(Usuario user) {
-        this.user = user;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public int getCreditos() {

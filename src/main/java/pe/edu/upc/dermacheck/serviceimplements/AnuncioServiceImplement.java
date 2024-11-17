@@ -26,7 +26,6 @@ public class AnuncioServiceImplement implements IAnunciosService {
     @Override
     public void update(Anuncio anuncio) {
         anuncioRepository.save(anuncio);
-
     }
 
     @Override
@@ -41,5 +40,10 @@ public class AnuncioServiceImplement implements IAnunciosService {
 
     public List<String[]> IngresosPorAnuncio() {
         return anuncioRepository.IngresosPorAnuncio();
+    }
+
+    @Override
+    public Anuncio listId(int id) {
+        return anuncioRepository.findById(id).orElse(new Anuncio());
     }
 }

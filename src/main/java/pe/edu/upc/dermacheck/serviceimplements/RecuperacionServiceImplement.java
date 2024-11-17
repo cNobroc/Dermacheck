@@ -29,6 +29,11 @@ public class RecuperacionServiceImplement implements IRecuperacionService {
     }
 
     @Override
+    public Recuperacion listId(int id) {
+        return rR.findById(id).orElse(new Recuperacion());
+    }
+
+    @Override
     public void delete(int id) {
         rR.deleteById(id);
     }

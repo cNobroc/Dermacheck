@@ -21,7 +21,7 @@ public class TratamientoController {
     private ITratamientoService tratamientoService;
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Usuario','Especialista','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
     public List<TratamientoDTO> listar() {
         return tratamientoService.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -35,6 +35,14 @@ public class TratamientoController {
         ModelMapper m = new ModelMapper();
         Tratamiento tratamiento = m.map(tratamientoDTO, Tratamiento.class);
         tratamientoService.insert(tratamiento);
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
+    public TratamientoDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        TratamientoDTO dto = m.map(tratamientoService.listId(id), TratamientoDTO.class);
+        return dto;
     }
 
     @PatchMapping

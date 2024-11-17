@@ -13,14 +13,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/centros-medicos")
-@PreAuthorize("hasAnyAuthority('ADMIN')")
-
+@PreAuthorize("hasAuthority('ADMIN')")
 public class CentroMedicosController {
     @Autowired
     private ICentroMedicosService cS;
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Especialista','Usuario','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('Especialista','Cliente','ADMIN')")
     public List<CentroMedicosDTO> ListarCentrosMedicos() {
         return cS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -51,6 +50,15 @@ public class CentroMedicosController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<String> obtenerCentrosConMasDiagnosticos(@RequestParam("cantidad") int cantidad) {
         return cS.obtenerCentrosCantidadDiagnosticos(cantidad);
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Cliente','Especialista','ADMIN')")
+// Agregar un get mapping porque estamos recuperando un registro por id cambiante (VARÍA)
+    public CentroMedicosDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        CentroMedicosDTO dto = m.map(cS.listId(id), CentroMedicosDTO.class);
+        return dto;
     }
 
 

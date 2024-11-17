@@ -11,14 +11,14 @@ import java.util.List;
 
 @Repository
 public interface IDiagnosticoRepository extends JpaRepository<Diagnostico, Integer> {
-    @Query("SELECT d FROM Diagnostico d WHERE d.fechaDiagnostico BETWEEN :fechaInicio AND :fechaFin")
+    @Query(value="SELECT d FROM Diagnostico d WHERE d.fechaDiagnostico BETWEEN :fechaInicio AND :fechaFin")
     List<Diagnostico> buscarPorFecha(@Param("fechaInicio") LocalDate fechaInicio, @Param("fechaFin") LocalDate fechaFin);
 
-    @Query("SELECT d FROM Diagnostico d WHERE d.puntuacion = (" +
+    @Query(value="SELECT d FROM Diagnostico d WHERE d.puntuacion = (" +
             "SELECT MAX(d2.puntuacion) FROM Diagnostico d2 WHERE d2.usuario.idUsuario = d.usuario.idUsuario)")
     List<Diagnostico> buscarDiagnosticosConPuntuacionMaximaPorUsuario();
 
-    @Query("SELECT CONCAT('El promedio es: ', CAST(AVG(d.puntuacion) AS string)) " +
+    @Query(value="SELECT CONCAT('El promedio es: ', CAST(AVG(d.puntuacion) AS string)) " +
             "FROM Diagnostico d WHERE d.centrosMedicos.idCentroMedico = :idCentroMedico")
     String obtenerPromedioPuntuacionPorCentroMedico(@Param("idCentroMedico") int idCentroMedico);
 

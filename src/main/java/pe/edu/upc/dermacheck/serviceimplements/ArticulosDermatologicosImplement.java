@@ -41,4 +41,9 @@ public class ArticulosDermatologicosImplement implements IArticulosDermatologico
     public List<String[]> RevistasPorUsuario() {
         return aS.RevistasPorUsuario();
     }
+
+    @Override
+    public ArticulosDermatologicos listId(int id) {
+        return aS.findById(id).orElse(new ArticulosDermatologicos());
+    }
 }

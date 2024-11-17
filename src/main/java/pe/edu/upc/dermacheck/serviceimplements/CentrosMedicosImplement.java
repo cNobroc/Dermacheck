@@ -38,5 +38,10 @@ public class CentrosMedicosImplement implements ICentroMedicosService {
         return CR.obtenerCentrosCantidadDiagnosticos(cantidad);
     }
 
+    @Override
+    public CentrosMedicos listId(int id) {
+        return CR.findById(id).orElse(new CentrosMedicos());
+    }
+
 
 }

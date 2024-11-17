@@ -60,4 +60,10 @@ public class UsuarioServiceImplement implements IUsuarioService {
         usuarioRepository.deleteById(id);
     }
 
+    @Override
+    public Usuario findOneByUsername(String username) {
+        return usuarioRepository.findOneByUsername(username);
+    }
+
+
 }

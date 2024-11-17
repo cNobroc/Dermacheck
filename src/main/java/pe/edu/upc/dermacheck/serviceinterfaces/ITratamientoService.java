@@ -14,6 +14,8 @@ public interface ITratamientoService {
 
     public void delete(int id);
 
+    public Tratamiento listId(int id);
+
     List<Tratamiento> buscarPorFechaInicio(LocalDate fecha);
 }
 

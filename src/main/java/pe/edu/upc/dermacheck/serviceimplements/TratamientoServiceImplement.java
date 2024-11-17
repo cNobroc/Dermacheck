@@ -35,6 +35,11 @@ public class TratamientoServiceImplement implements ITratamientoService {
     }
 
     @Override
+    public Tratamiento listId(int id) {
+        return tratamientoRepository.findById(id).orElse(new Tratamiento());
+    }
+
+    @Override
     public List<Tratamiento> buscarPorFechaInicio(LocalDate fechaInicio) {
         return tratamientoRepository.buscarPorFechaInicio(fechaInicio);
     }
