@@ -23,7 +23,7 @@ public class CORS implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
 
-        response.setHeader("Access-Control-Allow-Origin", "https://dermacheckdeployfront-1fhumzyrp-vchumpitaz01s-projects.vercel.app");
+        response.setHeader("Access-Control-Allow-Origin", "https://dermadeploy-m8vvrz6ep-vchumpitaz01s-projects.vercel.app");
         response.setHeader("Access-Control-Allow-Methods", "DELETE, GET, OPTIONS, PATCH, POST, PUT");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers",
